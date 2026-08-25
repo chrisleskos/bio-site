@@ -29,7 +29,7 @@
       <span class="menu-icon">&#9776;</span> MENU
     </div>
 
-    <!-- Kept the Day/Night slider in its original absolute position -->
+    <!-- Game-styled Day/Night slider -->
     <button class="slider-button" onclick="toggleNight(this)">
       <span><b>🌙</b><b>🌞</b></span>
     </button>
@@ -40,13 +40,48 @@
       <div class="back-btn" onclick="closeSidebar()">
         <span>&#10094;</span> BACK
       </div>
-      <!-- Sidebar Links -->
-      <div class="sidebar-content">
-        <div onclick="navigateTo('home')">HOME</div>
-        <div onclick="navigateTo('about')">ABOUT ME</div>
-        <div onclick="navigateTo('skills')">SKILLS</div>
-        <div onclick="navigateTo('work')">WORK</div>
-        <div onclick="navigateTo('contact')">CONTACT</div>
+
+      <!-- Main Layout Container for Sidebar -->
+      <div class="sidebar-main-layout">
+        <!-- Sidebar Links -->
+        <div class="sidebar-content">
+          <div onclick="navigateTo('home')">HOME</div>
+          <div onclick="navigateTo('about')">ABOUT ME</div>
+          <div onclick="navigateTo('skills')">SKILLS</div>
+          <div onclick="navigateTo('work')">WORK</div>
+          <div onclick="navigateTo('contact')">CONTACT</div>
+        </div>
+
+        <!-- Picture Montage Area -->
+        <div class="sidebar-montage">
+          <!-- Add your montage images here using background-image or <img> tags -->
+          <div
+            class="montage-pic"
+            style="background-image: url(&quot;images/your-pic-1.jpg&quot;)"
+          ></div>
+          <div
+            class="montage-pic"
+            style="background-image: url(&quot;images/your-pic-2.jpg&quot;)"
+          ></div>
+          <div
+            class="montage-pic"
+            style="background-image: url(&quot;images/your-pic-3.jpg&quot;)"
+          ></div>
+          <div
+            class="montage-pic"
+            style="background-image: url(&quot;images/your-pic-4.jpg&quot;)"
+          ></div>
+        </div>
+      </div>
+
+      <!-- Scrolling Ticker -->
+      <div class="scrolling-ticker">
+        <div class="ticker-text">
+          ✨ TIP: Interactive elements are hidden around the page! Click around
+          the room to discover Easter eggs... ✨ TIP: Interactive elements are
+          hidden around the page! Click around the room to discover Easter
+          eggs...
+        </div>
       </div>
     </nav>
 
@@ -95,6 +130,9 @@
                 <div class="legs back"></div>
             </div> -->
 
+      <div class="lamp floor-lamp">
+        <div class="lamp-head"></div>
+      </div>
       <div class="couch">
         <div class="back"></div>
         <div class="left-arm">
@@ -111,10 +149,6 @@
         <div class="leg leg3"></div>
         <div class="leg leg4"></div>
       </div>
-
-      <div class="lamp floor-lamp">
-        <div class="lamp-head"></div>
-      </div>
       <div class="wall-clock">
         <div class="seconds-hand"></div>
       </div>
@@ -124,6 +158,7 @@
       </div>
 
       <div class="window">
+        <img src="images/parthenon-view.png" />
         <div class="day-bg"></div>
         <div class="night-bg"></div>
       </div>

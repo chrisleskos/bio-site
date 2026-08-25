@@ -17,13 +17,39 @@
   max-width: 100vw;
 }
 
-.sidebar-content {
-  padding: 0 0 10vh 80px; /* Push the menu items slightly further right on large screens */
+.sidebar-main-layout {
+  flex-direction: row; /* Puts nav on left, montage on right */
+  padding: 0 60px;
 }
 
-.sidebar-content div {
-  font-size: 2rem;
-  letter-spacing: 4px;
+.sidebar-content {
+  flex-direction: column; /* Restores vertical stacking for desktop */
+  justify-content: center;
+  align-items: flex-start;
+  overflow-x: visible;
+  width: 30%;
+  gap: 40px;
+  padding: 0;
+}
+
+.sidebar-content div:hover {
+  transform: translateX(15px); /* Restores horizontal slide effect on desktop */
+}
+
+.sidebar-montage {
+  width: 70%;
+  padding: 40px;
+  grid-template-columns: repeat(
+    3,
+    1fr
+  ); /* Expands to a nicer 3-column grid on big screens */
+  grid-template-rows: repeat(2, 1fr);
+  gap: 25px;
+}
+
+.ticker-text {
+  font-size: 1rem; /* Slightly larger text for desktop monitors */
+  animation: marquee 35s linear infinite; /* Slower ticker on larger screens */
 }
 
 .back-btn {
@@ -47,4 +73,13 @@
 .slider-button {
   top: 30px;
   right: 40px;
+}
+
+/* ===========================================
+ *        WINDOW
+ * ===========================================
+ */
+
+.living-room .window {
+  left: 6%;
 }
