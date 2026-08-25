@@ -1,0 +1,1796 @@
+/* ===========================================
+ *        BASE CSS
+ * ===========================================
+ */
+:root {
+  --floor-height: 25%;
+}
+
+html {
+  width: 100vw;
+}
+body {
+  background: rgba(121, 157, 154, 1);
+  width: 100vw;
+  min-height: 100vh;
+
+  overflow-x: hidden;
+
+  margin: 0;
+
+  transition-duration: 2s;
+
+  font-family: "Raleway", sans-serif;
+}
+
+body.night {
+  background: rgba(91, 117, 124, 1);
+  transition-duration: 2s;
+}
+
+.room {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: flex-end;
+  width: 100%;
+  min-height: 95vh;
+  overflow: hidden;
+
+  border-bottom: solid 40px rgba(220, 220, 200, 1);
+}
+.room .floor {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+
+  width: 100%;
+  height: var(--floor-height);
+  z-index: 0;
+
+  background: linear-gradient(
+    to right,
+    rgb(226, 228, 169),
+    rgba(210, 210, 170, 1)
+  );
+
+  border-top: solid 3px rgba(200, 200, 180, 1);
+}
+
+.yard {
+  background: linear-gradient(-20deg, #77ddff, white 110%);
+  transition-duration: 2s;
+}
+.yard::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(rgba(1, 0, 21, 0.3), rgba(1, 0, 21, 1));
+  opacity: 0;
+  transition-duration: 2s;
+}
+.yard.night::after {
+  opacity: 1;
+  transition-duration: 2s;
+  z-index: 7;
+}
+.yard .floor {
+  background: linear-gradient(
+    to right,
+    rgba(100, 200, 100, 1),
+    rgba(50, 150, 50, 1)
+  );
+
+  border: none;
+}
+
+.living-room {
+  margin: 60px 0 10vh 0;
+}
+
+.office {
+  margin: 20vh 0 10vh 0;
+}
+
+/* ===========================================
+ *        NAVBAR
+ * ===========================================
+ */
+/* Lock scrolling class applied to body via JS */
+body.no-scroll {
+  overflow: hidden !important;
+}
+
+/* Menu Trigger Button */
+.menu-btn {
+  position: fixed;
+  top: 15px;
+  left: 20px;
+  z-index: 10;
+  color: rgba(255, 255, 255, 0.8);
+  background: rgba(10, 10, 10, 0.15); /* Translucent dark HUD box */
+  border: 2px solid rgba(255, 255, 255, 0.15); /* Subtle outline */
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(4px);
+  padding: 8px 10px;
+  border-radius: 8px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  text-transform: uppercase;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  transition: all 0.2s cubic-bezier(0.25, 1, 0.5, 1); /* Snappy game-like transition */
+}
+
+/* Snappy hover effect with glow */
+.menu-btn:hover {
+  color: white;
+  background: rgba(20, 20, 20, 0.8);
+  border-color: rgba(255, 255, 255, 0.8);
+  box-shadow:
+    0 0 15px rgba(255, 255, 255, 0.2),
+    inset 0 0 10px rgba(255, 255, 255, 0.1);
+  transform: scale(1.05);
+}
+
+.menu-icon {
+  font-size: 1rem;
+  line-height: 0.7;
+}
+
+/* Noir Sidebar Container */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -120%;
+  width: 100vw;
+
+  height: 100vh;
+  background: linear-gradient(
+    to right,
+    rgba(10, 10, 10, 0.98) 0%,
+    rgba(30, 30, 30, 0.85) 100%
+  );
+  z-index: 100;
+  transition: left 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  display: flex;
+  flex-direction: column;
+  box-shadow: 10px 0 30px rgba(0, 0, 0, 0.8);
+}
+
+/* Class added by JS to slide the sidebar in */
+.sidebar.open {
+  left: 0;
+}
+
+/* Back Button */
+.back-btn {
+  padding: 20px 20px 10px 20px;
+  font-size: 1rem;
+  color: rgba(220, 220, 220, 0.6);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  transition: all 0.3s ease;
+}
+
+.back-btn:hover {
+  color: white;
+  transform: translateX(-5px);
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+/* Sidebar Links Distribution */
+.sidebar-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  flex-grow: 1;
+  padding: 0 0 10vh 20px;
+}
+
+.sidebar-content div {
+  font-size: 1.4rem;
+  color: rgba(200, 200, 200, 0.5);
+  cursor: pointer;
+  font-weight: 300;
+  letter-spacing: 3px;
+  transition: all 0.4s ease;
+  position: relative;
+  width: fit-content;
+}
+
+/* Noir Hover Effects - Glowing white and shifting */
+.sidebar-content div:hover {
+  color: white;
+  transform: translateX(15px);
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+}
+
+/* Animated underline for interactive game feel */
+.sidebar-content div::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0%;
+  height: 1px;
+  background: white;
+  transition: 0.4s ease;
+}
+
+.sidebar-content div:hover::after {
+  width: 100%;
+}
+
+.slider-button {
+  border: 0;
+  outline: 0;
+
+  position: fixed;
+
+  border-radius: 150px;
+
+  width: 62px;
+  height: 35px;
+
+  top: 15px;
+  right: 20px;
+
+  font-size: 1rem;
+  padding: 3px;
+
+  background: #77ddff;
+
+  transition-duration: 0.5s;
+
+  cursor: pointer;
+  z-index: 30;
+}
+
+.slider-button span {
+  position: absolute;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+
+  z-index: -1;
+}
+
+.slider-button:before {
+  content: " ";
+
+  display: block;
+  height: 28px;
+  width: 28px;
+
+  border-radius: 100%;
+  background: #ececec;
+
+  transition-duration: 0.5s;
+
+  z-index: 1;
+}
+
+.slider-button.open {
+  background: rgba(10, 10, 71, 1);
+  transition-duration: 0.5s;
+}
+
+.slider-button.open::before {
+  translate: 100% 0;
+  transition-duration: 0.5s;
+}
+
+/* ===========================================
+ *        MAILBOX
+ * ===========================================
+ */
+
+.mailbox {
+  position: absolute;
+  bottom: var(--floor-height);
+  right: 10%;
+  width: 80px;
+  height: 80px;
+
+  z-index: 5;
+}
+
+.mailbox .pole {
+  position: absolute;
+  height: 100%;
+  width: 15%;
+  border-right: solid 8px rgba(50, 20, 10, 1);
+  background-color: rgba(100, 50, 10, 1);
+}
+
+.mailbox .box {
+  position: absolute;
+  height: 60%;
+  width: 100%;
+  top: -30%;
+  left: -41%;
+
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+
+  background-color: rgb(220, 73, 57);
+
+  display: flex;
+  justify-content: flex-start;
+  font-size: 0.55rem;
+  font-weight: 600;
+  font-family: "Raleway", sans-serif;
+  color: white;
+  padding-left: 8px;
+  align-items: center;
+  z-index: 3;
+  overflow: hidden;
+}
+.mailbox .box::after {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 60%;
+  background-color: rgb(135, 42, 26);
+  border-top-left-radius: 15px;
+}
+
+/* ===========================================
+ *        FENCE
+ * ===========================================
+ */
+
+.fence {
+  display: flex;
+  position: absolute;
+  justify-content: space-between;
+  align-items: flex-end;
+  position: absolute;
+  width: 100%;
+  height: 20%;
+  bottom: 0%;
+  z-index: 5;
+}
+.fence::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 28%;
+  bottom: 2%;
+  left: 0;
+  background: linear-gradient(to right, rgba(100, 50, 10, 1), rgb(72, 41, 4));
+  border-top: 2.2px solid rgba(150, 90, 10, 1);
+  border-bottom: 1px solid rgba(50, 20, 10, 1);
+}
+
+.fence > div {
+  position: relative;
+  width: 11%;
+  height: 68%;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  background: linear-gradient(to right, rgba(100, 50, 10, 1), rgb(72, 41, 4));
+  border-left: solid rgba(150, 90, 10, 1) 2px;
+  border-right: solid rgba(50, 20, 10, 1) 2px;
+}
+
+/* ===========================================
+ *        FOOTBALL
+ * ===========================================
+ */
+
+.football {
+  position: absolute;
+  bottom: 17%;
+  left: 10%;
+
+  width: 53px;
+  height: 53px;
+  cursor: pointer;
+  transition-duration: 1.5s;
+  z-index: 5;
+}
+.football.kick {
+  transform: translate(200px, 0);
+}
+
+.football .ball {
+  position: absolute;
+  border-radius: 100%;
+
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+}
+
+.football .ball .jabulani {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+
+  background: url("../images/ball.png") no-repeat center;
+  background-size: 100% 100%;
+  z-index: 2;
+  transition-duration: 1.5s;
+}
+.football.kick .ball .jabulani {
+  transform: rotate(330deg);
+  /* transition-duration: 1.5s; */
+}
+
+.football .ball::after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+  opacity: 0.5;
+  background: linear-gradient(
+    to bottom right,
+    rgba(250, 250, 250, 0),
+    rgba(20, 20, 20, 0.5)
+  );
+  z-index: 3;
+}
+
+.football .shadow {
+  position: absolute;
+
+  width: 100%;
+  height: 20%;
+
+  border-radius: 100%;
+
+  background-color: rgba(0, 0, 0, 0.2);
+  bottom: -2px;
+  left: 3px;
+  z-index: 0;
+}
+
+/* ===========================================
+ *        WINDOW
+ * ===========================================
+ */
+
+.living-room .window {
+  --transition-duration: 3s;
+  --frame-color: rgba(91, 71, 60, 1);
+  --frame-shades: rgba(45, 35, 30, 1);
+
+  position: absolute;
+
+  bottom: 42%;
+  left: 6%;
+
+  height: 230px;
+  width: 450px;
+  margin: 0;
+  padding: 0;
+
+  border-style: solid;
+  border-color: var(--frame-color);
+  border-width: 10px;
+
+  border-bottom-color: var(--frame-shades);
+  border-right-color: var(--frame-shades);
+
+  transition-duration: 1s;
+
+  overflow: hidden;
+
+  z-index: -2;
+}
+
+.office .window {
+  --transition-duration: 3s;
+  --frame-color: rgba(238, 238, 238, 1);
+  --frame-shades: rgba(200, 200, 200, 1);
+
+  position: absolute;
+
+  bottom: 100px;
+  top: 0;
+  left: 0%;
+  translate: -47% 0;
+
+  height: 75%;
+  width: 40%;
+  margin: 0;
+  padding: 0;
+
+  border-style: solid;
+  border-color: var(--frame-color);
+  border-width: 10px;
+
+  border-bottom-color: var(--frame-shades);
+  border-right-color: var(--frame-shades);
+
+  transition-duration: 1s;
+
+  overflow: hidden;
+
+  z-index: -2;
+}
+
+/* middle frame */
+.window::before {
+  content: "";
+  position: absolute;
+
+  height: 100%;
+  width: 3%;
+
+  left: 50%;
+  translate: -50% 0;
+
+  background: linear-gradient(
+    to bottom,
+    var(--frame-color),
+    var(--frame-shades)
+  );
+
+  z-index: 3;
+}
+
+/* moon */
+.window::after {
+  content: "";
+  position: absolute;
+
+  width: 70px;
+  height: 70px;
+
+  border-radius: 100%;
+
+  background: linear-gradient(to right, rgba(200, 200, 200, 1), grey);
+
+  top: 150%;
+  left: 150%;
+  z-index: -1;
+
+  transition-duration: var(--transition-duration);
+}
+
+.night-bg,
+.day-bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.night-bg {
+  background: linear-gradient(rgba(1, 0, 21, 0.3), rgba(1, 0, 21, 1));
+  opacity: 0;
+  transition-duration: var(--transition-duration);
+}
+
+.day-bg {
+  background: linear-gradient(-20deg, #77ddff, white 110%);
+  opacity: 1;
+  transition-duration: var(--transition-duration);
+}
+
+.window.night .night-bg {
+  transition-duration: var(--transition-duration);
+  opacity: 1;
+}
+
+.window.night .day-bg {
+  transition-duration: var(--transition-duration);
+  opacity: 0;
+}
+
+/* moon rise */
+.window.night::after {
+  top: 10%;
+  left: 48%;
+
+  transition-duration: var(--transition-duration);
+}
+
+/* ===========================================
+ *        BALCONY
+ * ===========================================
+ */
+
+.balcony {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  /* border-bottom: 90px solid rgba(210, 210, 190, 1); */
+  height: 35%;
+  width: 100%;
+  /* background-color: red; */
+  z-index: 2;
+}
+
+.balcony-floor {
+  position: absolute;
+
+  bottom: 0;
+  left: 0;
+
+  height: 40%;
+  width: 100%;
+  background: linear-gradient(
+    to right,
+    rgba(245, 245, 245, 1),
+    rgba(210, 210, 170, 1)
+  );
+
+  border-top: solid 30px rgba(200, 200, 180, 1);
+}
+
+.railing {
+  position: absolute;
+  top: 0;
+  height: 60%;
+  width: 100%;
+  background: rgba(180, 180, 220, 0.5);
+  border-top: solid 15px rgba(220, 220, 220, 1);
+}
+
+.railing::before {
+  content: "";
+  position: absolute;
+  height: 99%;
+  width: 2%;
+  right: 10%;
+  bottom: 0;
+  background: rgba(220, 220, 220, 1);
+}
+
+.building {
+  position: absolute;
+  height: 40%;
+  width: 20%;
+  bottom: 0;
+  right: 0;
+  background: lightgray;
+  border-right: solid 40px gray;
+  z-index: 0;
+}
+
+.small-building {
+  position: absolute;
+  height: 25%;
+  width: 20%;
+  bottom: 0;
+  right: 7%;
+  background: lightgray;
+  border-right: solid 110px gray;
+  z-index: 0;
+}
+
+/* ===========================================
+ *        COUCH
+ * ===========================================
+ */
+
+.couch {
+  position: relative;
+  display: inline-block;
+  width: 400px;
+  height: 340px;
+  z-index: 4;
+}
+
+.couch .back {
+  position: absolute;
+  width: 63%;
+  height: 53%;
+
+  background: rgba(209, 147, 163, 1);
+  translate: -50% -50%;
+  left: 59.2%;
+  top: 29%;
+
+  border-radius: 50px;
+  border-bottom-left-radius: 29px;
+
+  overflow: hidden;
+
+  z-index: 1;
+}
+
+.couch .back:before {
+  content: attr(div);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(122, 76, 87, 1);
+  border-radius: 50px;
+  border-bottom-left-radius: 29px;
+
+  translate: 0 2.6%;
+}
+
+.couch .back:after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(144, 90, 104, 1);
+  border-radius: 50px;
+  border-bottom-left-radius: 29px;
+
+  translate: -10% 2.6%;
+}
+
+.couch .right-arm {
+  position: absolute;
+  /* translate: -50% -50%; */
+  top: 38%;
+  left: 56.5%;
+  width: 42.5%;
+  height: 41.1%;
+  /* background: rgba(209, 147, 163, 0.5) */
+  z-index: 3;
+}
+
+.couch .right-arm .arm-wrest {
+  position: absolute;
+  width: 100%;
+  height: 53.2%;
+
+  border-radius: 50px;
+  border-bottom-left-radius: 0;
+  background: rgba(122, 76, 87, 1);
+  z-index: 2;
+  overflow: hidden;
+}
+
+.couch .right-arm .arm-wrest:before {
+  content: "";
+  position: absolute;
+
+  left: 0;
+  top: 0;
+
+  height: 100%;
+  width: 42%;
+
+  border-radius: 50%;
+  border-bottom-left-radius: 0;
+
+  background: rgba(159, 101, 115, 1);
+
+  z-index: 2;
+}
+
+.couch .right-arm .arm-wrest:after {
+  content: "";
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 10%;
+
+  background: rgba(182, 110, 119, 1);
+}
+
+.couch .right-arm .couch-side {
+  position: absolute;
+
+  height: 100%;
+  width: 81%;
+
+  border-top-left-radius: 30%;
+  border-bottom-right-radius: 22%;
+
+  background: rgba(95, 60, 67, 1);
+
+  overflow: hidden;
+
+  z-index: 1;
+}
+
+.couch .right-arm .couch-side:before {
+  content: "";
+  position: absolute;
+
+  left: 0;
+  top: 0;
+
+  height: 100%;
+  width: 15%;
+
+  background: rgba(159, 101, 115, 1);
+}
+
+.couch .seat {
+  position: absolute;
+  width: 60%;
+  height: 26.2%;
+
+  top: 53%;
+  left: 17%;
+
+  border-top-left-radius: 30%;
+
+  background: rgba(61, 37, 45, 1);
+
+  overflow: hidden;
+
+  z-index: 2;
+}
+
+.couch .seat::before {
+  content: "";
+  position: absolute;
+
+  width: 100%;
+  height: 50%;
+
+  bottom: 0;
+
+  background: rgba(159, 101, 115, 1);
+}
+
+.couch .seat::after {
+  content: "";
+  position: absolute;
+
+  width: 100%;
+  height: 17%;
+
+  top: 0;
+
+  background: rgba(71, 37, 45, 1);
+}
+
+.couch .left-arm {
+  position: absolute;
+
+  width: 42.5%;
+  height: 41.3%;
+  top: 37.9%;
+  left: 0;
+
+  z-index: 0;
+}
+
+.couch .left-arm .arm-wrest {
+  position: absolute;
+
+  width: 100%;
+  height: 53.4%;
+  border-radius: 50px;
+  background: rgba(95, 60, 67, 1);
+
+  overflow: hidden;
+
+  z-index: 1;
+}
+
+.couch .left-arm .arm-wrest::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+
+  height: 100%;
+  width: 40.7%;
+
+  border-radius: 50%;
+
+  border-bottom-right-radius: 0;
+
+  background: rgba(159, 101, 115, 1);
+
+  z-index: 1;
+}
+
+.couch .left-arm .arm-wrest::after {
+  content: "";
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 10%;
+
+  background: rgba(182, 110, 119, 1);
+
+  z-index: 0;
+}
+
+.couch .left-arm .couch-side {
+  position: absolute;
+  height: 80%;
+  width: 73%;
+  bottom: 0;
+  right: 0;
+
+  background: rgba(95, 60, 67, 1);
+}
+
+.couch .left-arm .couch-side::before {
+  content: "";
+  position: absolute;
+
+  left: 0;
+  top: 0;
+
+  height: 100%;
+  width: 18.4%;
+
+  background: rgba(159, 101, 115, 1);
+
+  z-index: 0;
+}
+
+.couch .leg {
+  position: absolute;
+  height: 25%;
+  width: 9%;
+
+  border-radius: 6px;
+  border-bottom-left-radius: 9px;
+
+  background: rgba(63, 34, 27, 1);
+
+  overflow: hidden;
+
+  z-index: -1;
+}
+
+.couch .leg:before {
+  content: "";
+  position: absolute;
+
+  right: 0;
+
+  height: 100%;
+  width: 35%;
+
+  background: rgba(48, 32, 31, 1);
+}
+
+.couch .leg3,
+.couch .leg4 {
+  bottom: 5%;
+}
+
+.couch .leg1,
+.couch .leg2 {
+  bottom: 0;
+}
+
+.couch .leg1 {
+  left: 13%;
+  bottom: 1.5%;
+}
+
+.couch .leg2 {
+  left: 56%;
+  bottom: 1%;
+}
+
+.couch .leg3 {
+  left: 35%;
+  bottom: 8%;
+}
+
+.couch .leg4 {
+  left: 74%;
+  bottom: 6.5%;
+}
+
+/* ===========================================
+ *        FLOOR-LAMP
+ * ===========================================
+ */
+
+.floor-lamp {
+  position: relative;
+  height: 580px;
+  width: 170px;
+
+  z-index: 5;
+
+  --body-color: rgba(180, 136, 98, 1);
+  --body-shade: rgba(100, 80, 63, 1);
+  --close-head-color: rgba(213, 190, 144, 1);
+  --open-head-color: rgba(213, 190, 144, 0.76);
+  /* background: red; */
+}
+
+.floor-lamp .lamp-head {
+  --head-tilt: 38px;
+  position: absolute;
+  top: 0;
+  width: calc(100% - 2 * var(--head-tilt));
+  height: 0%;
+
+  border-left: var(--head-tilt) solid transparent;
+  border-right: var(--head-tilt) solid transparent;
+
+  border-bottom: 100px solid var(--close-head-color);
+  transition-delay: 1s;
+}
+
+/* Lamp Body */
+.floor-lamp::before {
+  content: "";
+  position: absolute;
+
+  height: 90%;
+  width: 10%;
+
+  bottom: 0;
+  left: 50%;
+
+  translate: -50% 0;
+  background: var(--body-color);
+
+  /* globe */
+  border-top: solid white 10px;
+  border-radius: 50px;
+}
+
+/* Lamp Base */
+.floor-lamp::after {
+  content: "";
+  position: absolute;
+
+  translate: -50% 0;
+
+  left: 50%;
+  bottom: 0;
+
+  height: 3%;
+  width: 75%;
+
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+
+  background: var(--body-color);
+
+  border-bottom-color: var(--body-shade);
+}
+
+.floor-lamp.open-lamp .lamp-head {
+  transition-delay: 1s;
+  border-bottom: 100px solid var(--open-head-color);
+}
+
+/* Pseudo element for light */
+.floor-lamp .lamp-head:before {
+  transition-delay: 1s;
+  content: "";
+  position: absolute;
+  translate: -50%;
+
+  top: -200%;
+  left: 50%;
+  width: 1px;
+  height: 1px;
+
+  border-radius: 100%;
+}
+
+/* open light */
+.floor-lamp.open-lamp .lamp-head:before {
+  transition-delay: 1s;
+  box-shadow: 0 50px 300px 150px rgba(250, 250, 250, 1);
+
+  z-index: 0;
+}
+
+/* ===========================================
+ *        PLANT
+ * ===========================================
+ */
+
+.plant {
+  position: relative;
+  width: 100px;
+  height: 180px;
+
+  z-index: 6;
+
+  /* background: red; */
+}
+
+.plant .pot {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 45%;
+
+  clip-path: polygon(0% 0%, 100% 0%, 85% 100%, 15% 100%);
+  background: linear-gradient(to left, wheat, white);
+}
+
+.plant .leaves {
+  position: absolute;
+  bottom: 45%;
+  height: 50%;
+  width: 100%;
+  background: green;
+
+  clip-path: polygon(
+    10% 100%,
+    0% 0%,
+    20% 100%,
+    23% 100%,
+    25% 20%,
+    35% 100%,
+    90% 30%,
+    45% 100%,
+    52% 100%,
+    33% 20%,
+    66% 100%,
+    74% 100%,
+    0% 20%,
+    87% 100%,
+    90% 100%,
+    83% 20%,
+    97% 100%
+  );
+}
+
+/* ===========================================
+ *        WALL-CLOCK
+ * ===========================================
+ */
+.wall-clock {
+  position: absolute;
+  height: 76px;
+  width: 76px;
+  background: rgba(30, 30, 30, 0.75);
+  border: solid black 7px;
+  border-left-color: rgba(30, 30, 30, 1);
+  border-top-color: rgba(50, 50, 50, 1);
+  z-index: -1;
+
+  bottom: 550px;
+  right: 30%;
+}
+
+.wall-clock::before,
+.wall-clock::after,
+.wall-clock .seconds-hand {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  background: transparent;
+
+  translate: -50%;
+  border-radius: 50px;
+}
+
+/* hour hand */
+.wall-clock::before {
+  transition-duration: 1.3s;
+  width: 25%;
+  height: 4%;
+  border-right: solid white 20px;
+}
+
+/* minute hand */
+.wall-clock::after {
+  width: 30%;
+  height: 3%;
+  rotate: 25deg;
+  border-right: solid white 30px;
+  animation: clock-minutes 1500s linear 0s infinite; /* spinning but x2 the speed so it is more noticable*/
+}
+
+.wall-clock .seconds-hand {
+  width: 33%;
+  height: 2%;
+  rotate: 125deg;
+  border-right: solid white 35px;
+  animation: clock-seconds 60s linear 0s infinite;
+}
+
+.wall-clock.night::before {
+  transition-duration: 1.3s;
+  rotate: 220deg;
+}
+
+@keyframes clock-minutes {
+  100% {
+    rotate: 385deg;
+  }
+}
+
+@keyframes clock-seconds {
+  100% {
+    rotate: 485deg;
+  }
+}
+
+/* ===========================================
+ *        OFFICE DESK
+ * ===========================================
+ */
+
+.desk {
+  position: relative;
+  height: 300px;
+  width: 530px;
+  z-index: 4;
+  /* background: red; */
+}
+
+/* shadow */
+.desk::before {
+  content: "";
+  position: absolute;
+  translate: -50% 0;
+  bottom: 0;
+  left: 50%;
+  width: 100%;
+  height: 0%;
+  box-shadow: 0px -50px 60px 60px rgba(0, 0, 0, 0.4);
+  border-radius: 100%;
+}
+
+.desk .desktop {
+  position: absolute;
+  width: 100%;
+  height: 45%;
+  background: linear-gradient(
+    to right,
+    rgba(70, 70, 70, 1),
+    rgba(30, 30, 30, 1)
+  );
+
+  clip-path: polygon(10% 35%, 90% 35%, 100% 80%, 100% 100%, 0% 100%, 0% 80%);
+  z-index: 4;
+}
+
+/* front stripe */
+.desk .desktop:before {
+  content: "";
+  position: absolute;
+  height: 20%;
+  width: 100%;
+  bottom: 0;
+  background: linear-gradient(
+    to right,
+    rgba(90, 90, 90, 1),
+    rgba(60, 60, 60, 1)
+  );
+}
+
+.desk .legs {
+  position: absolute;
+  translate: -50% 0;
+  left: 50%;
+  bottom: 0;
+  width: 80%;
+  height: 55%;
+  border-left: solid rgba(20, 20, 20, 1) 15px;
+  border-right: solid rgba(20, 20, 20, 1) 15px;
+  z-index: 4;
+}
+
+/* left front leg shade */
+.desk .legs::before,
+.desk .legs::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  height: 100%;
+  width: 1.5%;
+
+  background: black;
+}
+
+.desk .legs::before {
+  clip-path: polygon(0 0, 100% 0, 100% 92%, 0% 100%);
+  left: 0;
+}
+
+.desk .legs::after {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 92%);
+  right: 0;
+}
+
+.desk .back-legs {
+  bottom: 20%;
+  width: 66%;
+  z-index: -1;
+}
+
+/* ===========================================
+ *          OFFICE SCREEN
+ * ===========================================
+ */
+
+.screen {
+  --screen-width: 32%;
+  --screen-height: 37%;
+
+  position: absolute;
+
+  width: var(--screen-width);
+  height: var(--screen-height);
+  border: solid 5px rgba(30, 30, 30, 1);
+
+  background: black;
+  z-index: 5;
+}
+
+.screen.vertical {
+  rotate: 90deg;
+  left: 32%;
+  top: -31%;
+  border-left-color: rgba(70, 70, 70, 1);
+  border-bottom-color: rgba(70, 70, 70, 1);
+}
+
+.screen.horizontal {
+  left: 61.5%;
+  top: -24.6%;
+  border-left-color: rgba(70, 70, 70, 1);
+  border-top-color: rgba(70, 70, 70, 1);
+}
+
+.screen .wallpaper {
+  width: 100%;
+  height: 100%;
+  z-index: 6;
+}
+
+.screen .wallpaper.stack-overflow {
+  background: url("../images/stack-overflow-page.png") white;
+  background-size: 100% 100%;
+}
+
+.screen .wallpaper.visual-studio-code {
+  background: url(../images/vsc.png) rgba(30, 30, 30, 1);
+  background-size: 100% auto;
+}
+
+.screen.night .wallpaper.stack-overflow {
+  background: black;
+}
+
+.screen.night .wallpaper.visual-studio-code {
+  background: black;
+}
+
+/* ===========================================
+ *          KEYBOARD
+ * ===========================================
+ */
+
+.keyboard {
+  position: absolute;
+  width: 28%;
+  height: 20%;
+  background: black;
+  right: 28%;
+  top: 14%;
+
+  clip-path: polygon(10% 35%, 90% 35%, 100% 85%, 100% 100%, 0% 100%, 0% 85%);
+  z-index: 6;
+}
+
+/*  shade */
+.keyboard::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 15%;
+  background: rgba(20, 20, 20, 1);
+  bottom: 0;
+}
+
+.keyboard .keys {
+  position: absolute;
+  translate: -50%;
+
+  height: 13%;
+
+  left: 50%;
+  background: rgba(50, 50, 50, 1);
+  clip-path: polygon(1.5% 35%, 98.5% 35%, 100% 78%, 100% 100%, 0% 100%, 0% 78%);
+}
+
+.keyboard .keys::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 20%;
+  bottom: 0;
+
+  background: rgba(100, 100, 100, 1);
+
+  animation: rgb-light 10s infinite;
+}
+
+.keyboard .keys.row1 {
+  top: 36%;
+  width: 80%;
+}
+
+.keyboard .keys.row2 {
+  top: 50%;
+  width: 85%;
+}
+
+.keyboard .keys.row3 {
+  top: 64%;
+  width: 90%;
+}
+
+@keyframes rgb-light {
+  16.6% {
+    background: rgba(200, 50, 50, 1);
+  }
+
+  33.2% {
+    background: rgba(50, 200, 50, 1);
+  }
+
+  49.8% {
+    background: rgba(50, 50, 200, 1);
+  }
+
+  66.4% {
+    background: rgba(150, 0, 150, 1);
+  }
+
+  83% {
+    background: rgba(200, 200, 0, 1);
+  }
+
+  100% {
+    background: rgba(200, 100, 0, 1);
+  }
+}
+
+/* ===========================================
+ *          TABLE-LAMP
+ * ===========================================
+ */
+
+.table-lamp {
+  /* background: red; */
+
+  position: absolute;
+  width: 120px;
+  height: 150px;
+
+  bottom: 77%;
+  left: 8%;
+
+  z-index: 6;
+}
+
+.table-lamp .lamp-base {
+  position: absolute;
+  /* background: black; */
+
+  /* border-radius: 100%; */
+  width: 60%;
+  height: 20%;
+  bottom: 0;
+  left: 20px;
+  /* translate: 0 60%; */
+
+  overflow: hidden;
+}
+
+.table-lamp .lamp-base::before {
+  content: "";
+  position: absolute;
+
+  height: 250%;
+  width: 100%;
+  top: 16%;
+  border-radius: 100%;
+
+  background: black;
+}
+
+.table-lamp .first-body-part {
+  position: absolute;
+  background: black;
+  width: 8%;
+  height: 50%;
+  rotate: -35deg;
+  left: 24%;
+  bottom: 9%;
+
+  border-radius: 50px;
+}
+
+.table-lamp .second-body-part {
+  position: absolute;
+  background: black;
+
+  left: 28%;
+  bottom: 43%;
+
+  height: 50%;
+  width: 8%;
+
+  rotate: 45deg;
+
+  border-radius: 50px;
+}
+
+.table-lamp .lamp-head {
+  --head-tilt: 18px;
+  position: absolute;
+  rotate: -20deg;
+  width: 40%;
+  height: 0%;
+
+  left: 37%;
+  top: 0%;
+
+  /* clip-path: polygon(15% 0%, 75% 0%, 100% 100%, 0% 100%); */
+  /* top: 0; */
+  width: calc(50% - 2 * var(--head-tilt));
+  /* height: 0%; */
+
+  border-left: var(--head-tilt) solid transparent;
+  border-right: var(--head-tilt) solid transparent;
+
+  border-bottom: 50px solid rgba(160, 250, 100, 1);
+  transition-delay: 1s;
+  z-index: 2;
+}
+
+.table-lamp .lamp-head::before {
+  transition-delay: 1s;
+  content: "";
+  position: absolute;
+  translate: -50%;
+  left: 50%;
+  top: 200%;
+  width: 1px;
+  height: 1px;
+
+  border-radius: 100%;
+}
+
+.table-lamp.open-lamp .lamp-head:before {
+  transition-delay: 1s;
+  box-shadow: 0 50px 140px 90px rgba(220, 220, 255, 1);
+
+  z-index: 0;
+}
+
+/* ===========================================
+ *          SMALL TABLE
+ * ===========================================
+ */
+
+.small-table {
+  position: relative;
+  width: 230px;
+  height: 130px;
+  /* bottom: 0; */
+  /* left: 16%; */
+  /* margin-left: auto; */
+}
+
+.small-table::before {
+  content: "";
+  position: absolute;
+  translate: -50% 0;
+  bottom: 0;
+  left: 50%;
+  width: 75%;
+  height: 0%;
+  box-shadow: 0px -10px 60px 30px rgba(0, 0, 0, 0.4);
+  border-radius: 100%;
+}
+
+.small-table .table-top {
+  position: relative;
+  top: 22%;
+  /* transform: translateX(-20px); */
+  clip-path: polygon(
+    10% 0%,
+    90% 0%,
+    100% 80%,
+    100% 100%,
+    0% 100%,
+    0% 80%
+  ); /* polygon (top left corner left and top, top right left and top, bottom right left and top, bottom left left and top*/
+  height: calc(30% - 12px);
+  width: 100%;
+  /* border-bottom: solid 10px rgba(45,35,30, 1); */
+  background: rgba(91, 71, 60, 1);
+  z-index: 1;
+}
+
+/* front shade */
+.small-table .table-top::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 25%;
+  bottom: 0;
+  background: rgba(45, 35, 30, 1);
+  z-index: 2;
+}
+
+.small-table .legs {
+  position: absolute;
+  translate: -50%;
+  left: 50%;
+  bottom: 0;
+  height: calc(70% - 24px);
+  width: calc(100% - 40px);
+  border: 10px black solid;
+  border-bottom: none;
+  z-index: 0;
+}
+
+.small-table .legs.back {
+  width: calc(100% - 65px);
+  height: calc(70% - 40px);
+  z-index: -1;
+  bottom: 15%;
+  border-width: 8px;
+}
+
+/* ===========================================
+ *          HEADER MESSAGE
+ * ===========================================
+ */
+
+.header-message {
+  position: absolute;
+  margin-top: 30px;
+  top: 40%;
+  left: 32%;
+  width: 80vw;
+
+  color: white;
+  font-size: 2rem;
+  /* white-space:pre; */
+  z-index: 10;
+}
+
+.header-message div {
+  position: relative;
+  font-size: 1.3rem;
+  translate: 50px 0;
+  width: 70ch;
+  height: fit-content;
+  word-wrap: normal;
+}
+
+.header-message::before,
+.header-message div::before {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  /* color: rgba(121, 157, 154, 0.25); */
+  color: rgba(255, 255, 255, 0.1);
+  translate: 10% -20px;
+  transition-duration: 3s;
+}
+
+.night .header-message::before,
+.night .header-message div::before {
+  translate: -10% 20px;
+  transition-duration: 3s;
+}
+
+.living-room .header-message {
+  top: 0;
+  left: 2%;
+  width: 80vw;
+}
+
+.living-room .header-message::before {
+  content: "Hello!";
+}
+
+.living-room .header-message div::before {
+  content: "I am Christos";
+}
+
+.office .header-message {
+  top: 0;
+  left: 0%;
+  width: 80vw;
+}
+
+.office .header-message::before {
+  content: "About";
+}
+
+.office .header-message div::before {
+  content: "___________________________________________________________________________ ___________________________________________________________________________ ___________________________________________________________________________ ___________________________________________________________________________ ___________________________________________________________________________ ___________________________________________________________________________ ___________________________________________________________________________";
+}
+
+/* ===========================================
+ *          CONTACT
+ * ===========================================
+ */
+
+.contact-room form {
+  /* display: flex; */
+  width: 30%;
+  padding: 0;
+}
+
+.contact-room form input {
+  margin: 0;
+  padding: 0;
+  border: none;
+  width: 49.4%;
+}
+
+.contact-room form textarea {
+  width: 100%;
+  height: 30vh;
+}
+
+.contact-room form button {
+  width: 100%;
+}
+
+/* ===========================================
+ *          FOOTER
+ * ===========================================
+ */
+
+.footer {
+  height: 90vh;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.footer .socials {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 30px;
+}
+
+.footer .socials > a {
+  font-style: none;
+  text-decoration: none;
+  color: white;
+  margin: 50px 0;
+  display: flex;
+  align-items: center;
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+
+.footer .socials .icon {
+  height: 1.3em;
+}

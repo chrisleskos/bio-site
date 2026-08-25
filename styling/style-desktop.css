@@ -1,0 +1,50 @@
+.fence::after {
+  height: 45%;
+}
+
+.fence > div {
+  width: 8%;
+  height: 80%;
+}
+
+/* ===========================================
+ *        DESKTOP SIDEBAR OVERRIDES
+ * ===========================================
+ */
+
+.sidebar {
+  /* Override the 400px mobile restriction to occupy the whole screen width */
+  max-width: 100vw;
+}
+
+.sidebar-content {
+  padding: 0 0 10vh 80px; /* Push the menu items slightly further right on large screens */
+}
+
+.sidebar-content div {
+  font-size: 2rem;
+  letter-spacing: 4px;
+}
+
+.back-btn {
+  padding: 40px 20px 10px 60px; /* Larger hit area and deeper padding */
+  font-size: 1.5rem; /* Larger back button */
+}
+
+.menu-btn {
+  top: 30px;
+  left: 40px;
+  font-size: 0.8rem;
+  padding: 9px 11px;
+  border-radius: 12px;
+  letter-spacing: 3px;
+}
+
+.menu-icon {
+  font-size: 1.2rem;
+}
+
+.slider-button {
+  top: 30px;
+  right: 40px;
+}

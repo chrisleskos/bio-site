@@ -1,0 +1,217 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Personal website of Chris Leskos, a software/web developer from Athens, Greece. Experience in Website developent with Java, Spring, Spring Boot, React, PostgreSQL, Azure, Azure DevOps, Azure Platform, PaaS, SaaS, IaaS, Docker, Kubernetes, CI/CD, GitHub Actions, GitHub, Git, HTML, CSS, JavaScript, TypeScript, Node.js, Express.js, REST APIs"
+    />
+    <title>Chris Leskos Bio</title>
+    <link type="text/css" rel="stylesheet" href="styling/style.css" />
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="styling/style-desktop.css"
+      media="(orientation: landscape)"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Main Menu Trigger Button -->
+    <div class="menu-btn" onclick="openSidebar()">
+      <span class="menu-icon">&#9776;</span> MENU
+    </div>
+
+    <!-- Kept the Day/Night slider in its original absolute position -->
+    <button class="slider-button" onclick="toggleNight(this)">
+      <span><b>🌙</b><b>🌞</b></span>
+    </button>
+
+    <!-- Noir Sidebar Navigation -->
+    <nav id="sidebar" class="sidebar">
+      <!-- Back Button -->
+      <div class="back-btn" onclick="closeSidebar()">
+        <span>&#10094;</span> BACK
+      </div>
+      <!-- Sidebar Links -->
+      <div class="sidebar-content">
+        <div onclick="navigateTo('home')">HOME</div>
+        <div onclick="navigateTo('about')">ABOUT ME</div>
+        <div onclick="navigateTo('skills')">SKILLS</div>
+        <div onclick="navigateTo('work')">WORK</div>
+        <div onclick="navigateTo('contact')">CONTACT</div>
+      </div>
+    </nav>
+
+    <div class="room yard">
+      <div class="header-message">
+        Christos <b>Leskos</b>
+        <div>Software Developer</div>
+      </div>
+      <div class="fence">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <div class="mailbox">
+        <div class="box">
+          <span>Welcome</span>
+        </div>
+        <div class="pole"></div>
+      </div>
+      <div class="floor"></div>
+      <div class="football" id="football">
+        <div class="ball">
+          <div class="jabulani"></div>
+        </div>
+        <div class="shadow"></div>
+      </div>
+    </div>
+
+    <div class="room living-room" id="home">
+      <div class="header-message">
+        Hello!
+        <div>
+          I am Christos, <span id="years-old"></span>y old Software/Web
+          <br />Developer, from Athens, Greece. <br /><br />Have a sit!
+        </div>
+      </div>
+
+      <!-- <div class="small-table">
+                <div class="table-top"></div>
+                <div class="legs front"></div>
+                <div class="legs back"></div>
+            </div> -->
+
+      <div class="couch">
+        <div class="back"></div>
+        <div class="left-arm">
+          <div class="arm-wrest"></div>
+          <div class="couch-side"></div>
+        </div>
+        <div class="right-arm">
+          <div class="arm-wrest"></div>
+          <div class="couch-side"></div>
+        </div>
+        <div class="seat"></div>
+        <div class="leg leg1"></div>
+        <div class="leg leg2"></div>
+        <div class="leg leg3"></div>
+        <div class="leg leg4"></div>
+      </div>
+
+      <div class="lamp floor-lamp">
+        <div class="lamp-head"></div>
+      </div>
+      <div class="wall-clock">
+        <div class="seconds-hand"></div>
+      </div>
+      <div class="plant">
+        <div class="leaves"></div>
+        <div class="pot"></div>
+      </div>
+
+      <div class="window">
+        <div class="day-bg"></div>
+        <div class="night-bg"></div>
+      </div>
+
+      <div class="floor"></div>
+    </div>
+
+    <div class="room office" id="about">
+      <div class="header-message">
+        About
+        <div>
+          I am a Software/Web Developer from Athens,Greece. Graduated Computer
+          Science at University of Piraeus.
+        </div>
+      </div>
+
+      <div class="window">
+        <div class="balcony">
+          <div class="railing"></div>
+          <div class="balcony-floor"></div>
+        </div>
+        <div class="building"></div>
+        <div class="small-building"></div>
+        <div class="day-bg"></div>
+        <div class="night-bg"></div>
+      </div>
+
+      <div class="desk">
+        <div class="lamp table-lamp">
+          <div class="lamp-head"></div>
+          <div class="lamp-base"></div>
+          <div class="first-body-part"></div>
+          <div class="second-body-part"></div>
+        </div>
+        <div class="desktop"></div>
+        <div class="legs"></div>
+        <div class="legs back-legs"></div>
+        <div class="screen horizontal">
+          <div class="wallpaper stack-overflow"></div>
+        </div>
+        <div class="screen vertical">
+          <div class="wallpaper visual-studio-code"></div>
+        </div>
+        <div class="keyboard">
+          <div class="keys row1"></div>
+          <div class="keys row2"></div>
+          <div class="keys row3"></div>
+        </div>
+      </div>
+      <div class="floor"></div>
+    </div>
+
+    <div class="room contact-room" id="contact">
+      <form>
+        <input type="text" placeholder="Name" />
+        <input type="text" placeholder="Email" /><br />
+        <textarea placeholder="Message"></textarea><br />
+        <button type="submit">Send</button>
+      </form>
+    </div>
+
+    <div class="room footer">
+      <div class="socials">
+        <a href="https://github.com/chrisleskos" target="_blank"
+          ><img
+            src="images/github-icon.png"
+            alt="github"
+            class="icon"
+          />/chrisleskos</a
+        >
+        <a href="https://www.linkedin.com/in/chrislsk/" target="_blank"
+          ><img
+            src="images/linkedin-icon.png"
+            alt="linkedin"
+            class="icon"
+          />/chrislsk</a
+        >
+        <a href="https://www.instagram.com/lsk.ch/" target="_blank"
+          ><img src="images/Instagram-Icon.png" alt="insta" class="icon" />
+          @lsk.ch</a
+        >
+        <a href="https://www.facebook.com/xristos.lsk/" target="_blank"
+          ><img src="images/Facebook_icon.png" alt="fb" class="icon" />Xristos
+          Lsk</a
+        >
+      </div>
+    </div>
+
+    <script src="js/script.js"></script>
+  </body>
+</html>
