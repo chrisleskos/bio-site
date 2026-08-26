@@ -1,5 +1,7 @@
 /* SIDEBAR NAVIGATION */
 
+let night = false;
+
 function openSidebar() {
   document.getElementById("sidebar").classList.add("open");
   document.body.classList.add("no-scroll");
@@ -23,13 +25,13 @@ function navigateTo(elementId) {
 }
 
 /* NIGHT MODE TOGGLE */
-
 function toggleNight(btn) {
+  night = !night;
   lamps = document.getElementsByClassName("lamp");
   homeWindows = document.getElementsByClassName("window");
   wallClock = document.getElementsByClassName("wall-clock")[0];
   body = document.getElementsByTagName("body")[0];
-  yard = document.getElementsByClassName("yard")[0];
+  yardEl = document.getElementsByClassName("yard")[0];
   screens = document.getElementsByClassName("screen");
 
   for (i = 0; i < lamps.length; i++) lamps[i].classList.toggle("open-lamp");
@@ -39,17 +41,45 @@ function toggleNight(btn) {
 
   for (i = 0; i < screens.length; i++) screens[i].classList.toggle("night");
 
-  btn.classList.toggle("open");
+  if (btn) btn.classList.toggle("open");
   wallClock.classList.toggle("night");
   body.classList.toggle("night");
-  yard.classList.toggle("night");
+  yardEl.classList.toggle("night");
 }
 
+const yard = document.getElementsByClassName("yard")[0];
+const birdSound = new Audio("../auxilary/sound/birds.wav");
+birdSound.play();
+birdSound.loop = true;
+
+const yardObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting && !night) {
+        birdSound.currentTime = 0;
+        birdSound.play();
+      } else {
+        birdSound.pause();
+        birdSound.currentTime = 0;
+      }
+    });
+  },
+  {
+    threshold: 0.2,
+  },
+);
+
+yardObserver.observe(yard);
+
 /* FOOTBALL KICK */
-football = document.getElementById("football");
+const football = document.getElementById("football");
+const kickSound = new Audio("../auxilary/sound/ball-kick.wav");
 
 football.addEventListener("click", function () {
   football.classList.toggle("kick");
+
+  kickSound.currentTime = 0.1;
+  kickSound.play();
 });
 
 /* CALCULATE AGE */
@@ -80,7 +110,7 @@ tv.addEventListener("click", function () {
   tv.classList.contains("open") ? friendsVideo.play() : friendsVideo.pause();
 });
 
-const observer = new IntersectionObserver(
+const livingRoomObserver = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
@@ -95,4 +125,4 @@ const observer = new IntersectionObserver(
   },
 );
 
-observer.observe(livingRoom);
+livingRoomObserver.observe(livingRoom);

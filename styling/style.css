@@ -465,6 +465,94 @@ body.no-scroll {
 }
 
 /* ===========================================
+ *        BIRDS
+ * ===========================================
+ */
+
+.birds {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70%;
+}
+
+.birds .bird {
+  position: relative;
+  width: 10px;
+  height: 10px;
+  left: 0%;
+  top: 80%;
+
+  animation: bird-fly 15s linear infinite;
+}
+.birds .bird:first-child {
+  top: 80%;
+}
+.birds .bird:nth-child(2) {
+  left: -12%;
+  top: 70%;
+  animation-duration: 13s;
+  animation-timing-function: cubic-bezier(1, 1, 0, 0);
+}
+
+.birds .bird::after,
+.birds .bird::before {
+  content: "";
+  display: block;
+  position: absolute;
+  border-top: 0.5px solid rgba(0, 0, 0, 1);
+
+  width: 103%;
+  height: 100%;
+  border-radius: 20px;
+  top: 0;
+}
+
+.birds .bird::before {
+  animation: left-wing-flap 0.4s linear infinite alternate;
+}
+
+.birds .bird::after {
+  left: 100%;
+  animation: right-wing-flap 0.4s linear infinite alternate;
+}
+
+body.night .birds .bird::after,
+body.night .birds .bird::before {
+  animation: none;
+}
+
+@keyframes right-wing-flap {
+  0% {
+    transform: rotateZ(-45deg);
+    border-radius: 60%;
+  }
+  100% {
+    transform: rotateZ(6deg);
+    border-radius: 0%;
+  }
+}
+
+@keyframes left-wing-flap {
+  0% {
+    transform: rotateZ(45deg);
+    border-radius: 60%;
+  }
+  100% {
+    transform: rotateZ(-6deg);
+    border-radius: 0%;
+  }
+}
+
+@keyframes bird-fly {
+  100% {
+    left: 420%;
+    top: 20%;
+  }
+}
+
+/* ===========================================
  *        FOOTBALL
  * ===========================================
  */
@@ -499,10 +587,11 @@ body.no-scroll {
   height: 100%;
   border-radius: 100%;
 
-  background: url("../images/ball.png") no-repeat center;
+  background: url("../auxilary/images/ball.png") no-repeat center;
   background-size: 100% 100%;
   z-index: 2;
   transition-duration: 1.5s;
+  transform: rotate(20deg);
 }
 .football.kick .ball .jabulani {
   transform: rotate(330deg);
@@ -1483,12 +1572,12 @@ body.no-scroll {
 }
 
 .screen .wallpaper.stack-overflow {
-  background: url("../images/stack-overflow-page.png") white;
+  background: url("../auxilary/images/stack-overflow-page.png") white;
   background-size: 100% 100%;
 }
 
 .screen .wallpaper.visual-studio-code {
-  background: url(../images/vsc.png) rgba(30, 30, 30, 1);
+  background: url(../auxilary/images/vsc.png) rgba(30, 30, 30, 1);
   background-size: 100% auto;
 }
 
