@@ -72,9 +72,27 @@ football.addEventListener("click", function () {
  *    TV START/STOP
  * =================== */
 
+const livingRoom = document.getElementsByClassName("living-room")[0];
 const tv = document.getElementById("tv");
+const friendsVideo = tv.getElementsByTagName("video")[0];
 tv.addEventListener("click", function () {
   tv.classList.toggle("open");
-  friendsVideo = tv.getElementsByTagName("video")[0];
   tv.classList.contains("open") ? friendsVideo.play() : friendsVideo.pause();
 });
+
+const observer = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        friendsVideo.muted = false;
+      } else {
+        friendsVideo.muted = true;
+      }
+    });
+  },
+  {
+    threshold: 0.2,
+  },
+);
+
+observer.observe(livingRoom);
