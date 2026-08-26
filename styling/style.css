@@ -552,10 +552,10 @@ body.no-scroll {
   position: absolute;
 
   bottom: 50%;
-  left: -10%;
+  left: -9%;
 
-  height: 170px;
-  width: 280px;
+  height: 180px;
+  width: 250px;
   margin: 0;
   padding: 0;
 
@@ -1272,7 +1272,7 @@ body.no-scroll {
   border-top-color: rgba(50, 50, 50, 1);
   z-index: 1;
 
-  bottom: 550px;
+  top: 20%;
   right: -3%;
 }
 
@@ -1463,8 +1463,8 @@ body.no-scroll {
 .screen.tv {
   height: 120px;
   width: calc(16 * 120px / 9);
-  top: 40%;
-  left: 67%;
+  top: 37%;
+  left: 64%;
   cursor: pointer;
 }
 
