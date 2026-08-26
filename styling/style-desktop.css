@@ -76,6 +76,28 @@
 }
 
 /* ===========================================
+ *        MAILBOX
+ * ===========================================
+ */
+
+.mailbox {
+  bottom: calc(var(--floor-height) - 0.5%);
+  right: 10%;
+  width: 80px;
+  height: 85px;
+}
+
+.mailbox .pole {
+  border-right-width: 8px;
+}
+
+.mailbox .box {
+  font-size: 0.55rem;
+  height: 55%;
+  padding: 0 0 0 4px;
+}
+
+/* ===========================================
  *        WINDOW
  * ===========================================
  */
@@ -102,7 +124,7 @@
 
 .wall-clock {
   bottom: 500px;
-  right: 30%;
+  left: 40%;
 }
 
 /* ===========================================
@@ -112,4 +134,17 @@
 
 .plant {
   right: 40%;
+}
+
+/* ===========================================
+ *           SCREEN
+ * ===========================================
+ */
+
+.screen.tv {
+  top: 20%;
+  left: 50%;
+  width: var(--screen-width);
+  height: var(--screen-height);
+  scale: 0.7;
 }

@@ -67,3 +67,14 @@ football.addEventListener("click", function () {
   }
   ageElement.textContent = age;
 })();
+
+/* ===================
+ *    TV START/STOP
+ * =================== */
+
+const tv = document.getElementById("tv");
+tv.addEventListener("click", function () {
+  tv.classList.toggle("open");
+  friendsVideo = tv.getElementsByTagName("video")[0];
+  tv.classList.contains("open") ? friendsVideo.play() : friendsVideo.pause();
+});
