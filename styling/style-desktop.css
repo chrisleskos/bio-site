@@ -137,6 +137,46 @@
 }
 
 /* ===========================================
+ *          MIDDLE KITCHEN BENCH
+ * ===========================================
+ */
+
+.middle-bench {
+  width: 30%;
+  height: 28%;
+  clip-path: polygon(29% 0%, 71% 0%, 100% 85%, 100% 100%, 0% 100%, 0% 85%);
+}
+
+/* ===========================================
+ *          KITCEN TOP
+ * ===========================================
+ */
+.kitchen-top {
+  --point-one: 31.1% 0%;
+  --point-two: 68.9% 0%;
+  --point-three: 100% 70%;
+  --point-four: 100% 100%;
+  --point-five: 88% 100%;
+  --point-six: 64% 10%;
+  --point-seven: 36% 10%;
+  --point-eight: 12% 100%;
+  --point-nine: 0% 100%;
+  --point-ten: 0% 70%;
+}
+
+.kitchen-top .corner-edge {
+  left: 64%;
+}
+.kitchen-top .corner-edge:first-child {
+  left: 36%;
+}
+
+.kitchen-top .front-cupboard {
+  width: 28%;
+  left: 36%;
+}
+
+/* ===========================================
  *           SCREEN
  * ===========================================
  */

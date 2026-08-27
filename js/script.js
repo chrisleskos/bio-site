@@ -41,6 +41,9 @@ function toggleNight(btn) {
 
   for (i = 0; i < screens.length; i++) screens[i].classList.toggle("night");
 
+  birdSound.currentTime = 0;
+  night && birdSound.pause();
+
   if (btn) btn.classList.toggle("open");
   wallClock.classList.toggle("night");
   body.classList.toggle("night");

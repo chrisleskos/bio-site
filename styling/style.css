@@ -90,6 +90,42 @@ body.night {
   /* margin: 60px 0 10vh 0; */
 }
 
+.kitchen {
+  background-color: #e0f0ff;
+}
+.kitchen .floor {
+  background:
+    /* subtle wood grain */
+    repeating-linear-gradient(
+      2deg,
+      rgba(80, 50, 25, 0.035) 0px,
+      rgba(80, 50, 25, 0.035) 1px,
+      transparent 1px,
+      transparent 10px
+    ),
+    /* very subtle plank variation */
+    repeating-linear-gradient(
+        0deg,
+        rgba(255, 255, 255, 0.025) 0px,
+        rgba(255, 255, 255, 0.025) 1px,
+        transparent 1px,
+        transparent 95px
+      ),
+    /* plank seams */
+    repeating-linear-gradient(
+        0deg,
+        transparent 0px,
+        transparent 94px,
+        rgba(70, 45, 25, 0.18) 95px,
+        rgba(70, 45, 25, 0.18) 96px
+      ),
+    /* elegant warm oak */
+    linear-gradient(90deg, #c89a62, #d2aa72, #c3975f, #d0a66b, #c39760);
+
+  background-size: auto;
+  height: calc(var(--floor-height));
+}
+
 .office {
   /* margin: 20vh 0 10vh 0; */
 }
@@ -519,7 +555,8 @@ body.no-scroll {
 }
 
 body.night .birds .bird::after,
-body.night .birds .bird::before {
+body.night .birds .bird::before,
+body.night .birds .bird {
   animation: none;
 }
 
@@ -566,6 +603,7 @@ body.night .birds .bird::before {
   height: 53px;
   cursor: pointer;
   transition-duration: 1.5s;
+  transition-timing-function: cubic-bezier(0.1, 0.82, 0.565, 1);
   z-index: 5;
 }
 .football.kick {
@@ -592,12 +630,13 @@ body.night .birds .bird::before {
   z-index: 2;
   transition-duration: 1.5s;
   transform: rotate(20deg);
+  transition-timing-function: cubic-bezier(0.1, 0.82, 0.565, 1);
 }
 .football.kick .ball .jabulani {
   transform: rotate(330deg);
   /* transition-duration: 1.5s; */
 }
-
+/* shadow */
 .football .ball::after {
   content: "";
   display: block;
@@ -608,8 +647,8 @@ body.night .birds .bird::before {
   opacity: 0.5;
   background: linear-gradient(
     to bottom right,
-    rgba(250, 250, 250, 0),
-    rgba(20, 20, 20, 0.5)
+    rgba(250, 250, 250, 0) 55%,
+    rgba(20, 20, 20, 0.8) 66%
   );
   z-index: 3;
 }
@@ -635,8 +674,8 @@ body.night .birds .bird::before {
 
 .living-room .window {
   --transition-duration: 3s;
-  --frame-color: rgba(91, 71, 60, 1);
-  --frame-shades: rgba(45, 35, 30, 1);
+  --frame-color: rgba(238, 238, 238, 1);
+  --frame-shades: rgba(200, 200, 200, 1);
 
   position: absolute;
 
@@ -1419,6 +1458,246 @@ body.night .birds .bird::before {
   100% {
     rotate: 485deg;
   }
+}
+
+/* ===========================================
+ *          MIDDLE KITCHEN BENCH
+ * ===========================================
+ */
+
+.middle-bench {
+  position: absolute;
+  width: 95%;
+  height: 24%;
+  /* white marble bg */
+  background:
+    /* large veins */
+    linear-gradient(
+      125deg,
+      transparent 20%,
+      rgba(100, 100, 100, 0.12) 21%,
+      transparent 22%,
+      transparent 48%,
+      rgba(80, 80, 80, 0.08) 49%,
+      transparent 51%,
+      transparent 79%,
+      rgba(20, 20, 20, 0.1) 83%,
+      transparent 84%
+    ),
+    /* marble base */ #f5f5f2;
+  border: 1.4px solid white;
+  border-top: 0px solid whit;
+  left: 50%;
+  bottom: 0;
+  transform: translate(-50%, 0);
+  clip-path: polygon(27% 0%, 73% 0%, 92% 85%, 92% 100%, 8% 100%, 8% 85%);
+  box-shadow: 10px 0 150px 80px rgba(0, 0, 0, 1);
+}
+.middle-bench::after {
+  /* front side */
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 15%;
+  background: linear-gradient(
+    to left,
+    rgba(30, 30, 30, 0.3) 10%,
+    rgba(30, 30, 30, 0.5) 70%,
+    rgba(30, 30, 30, 0.3) 95%
+  );
+  border-top: 1px solid white;
+}
+.middle-bench::before {
+  /* depth shadow */
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: linear-gradient(to top, transparent 61%, rgba(60, 60, 60, 0.15));
+  z-index: 3;
+}
+
+/* ===========================================
+ *          KITCEN TOP
+ * ===========================================
+ */
+
+.kitchen-top {
+  --point-one: 31.1% 0%;
+  --point-two: 68.9% 0%;
+  --point-three: 100% 70%;
+  --point-four: 100% 100%;
+  --point-five: 88% 100%;
+  --point-six: 64% 10%;
+  --point-seven: 36% 10%;
+  --point-eight: 12% 100%;
+  --point-nine: 0% 100%;
+  --point-ten: 0% 70%;
+
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: calc(var(--floor-height) + 10%);
+  perspective: 800px;
+}
+.kitchen-top::after {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
+  /* white marble bg */
+  background:
+    /* large veins */
+    linear-gradient(
+      75deg,
+      transparent 20%,
+      rgba(100, 100, 100, 0.12) 21%,
+      transparent 22%,
+      transparent 48%,
+      rgba(80, 80, 80, 0.08) 49%,
+      transparent 51%,
+      transparent 79%,
+      rgba(20, 20, 20, 0.1) 83%,
+      transparent 84%
+    ),
+    /* marble base */ #f5f5f2;
+
+  clip-path: polygon(
+    var(--point-one),
+    var(--point-two),
+    var(--point-three),
+    var(--point-four),
+    var(--point-five),
+    var(--point-six),
+    var(--point-seven),
+    var(--point-eight),
+    var(--point-nine),
+    var(--point-ten)
+  );
+}
+
+.kitchen-top .corner-edge {
+  position: absolute;
+  width: 1.5px;
+  height: calc(31% + 10px);
+  background-color: rgba(90, 90, 90, 0.6);
+  top: 10%;
+  left: 75%;
+  z-index: 5;
+}
+.kitchen-top .corner-edge:first-child {
+  top: 10%;
+  left: 25%;
+}
+
+.kitchen-top .front-cupboard {
+  position: absolute;
+  width: 50%;
+  height: 31%;
+  top: 10%;
+  left: 25%;
+  border-top: 10px solid #f5f5f2dd;
+  background:
+    /* subtle wood grain */
+    repeating-linear-gradient(
+      2deg,
+      transparent 0px,
+      transparent 14px,
+      rgba(255, 255, 255, 0.025) 15px,
+      transparent 17px,
+      transparent 30px
+    ),
+    /* darker grain variations */
+    repeating-linear-gradient(
+        88deg,
+        rgba(80, 50, 30, 0.08) 0px,
+        transparent 35px,
+        rgba(40, 25, 15, 0.1) 70px,
+        transparent 110px
+      ),
+    /* deep ebony base */
+    linear-gradient(
+        90deg,
+        #171311 0%,
+        #211a16 25%,
+        #151210 50%,
+        #211915 75%,
+        #171311 100%
+      );
+
+  background-size: auto;
+}
+.kitchen-top .front-cupboard.left {
+  border: none;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  clip-path: polygon(
+    var(--point-eight),
+    var(--point-seven),
+    36% calc(41% + 10px),
+    26% 100%
+  );
+}
+.kitchen-top .front-cupboard.right {
+  border: none;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  clip-path: polygon(
+    var(--point-six),
+    var(--point-five),
+    74% 100%,
+    64% calc(41% + 10px)
+  );
+}
+
+.kitchen-top .front-cupboard.right .marble-side {
+  border: none;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #f5f5f2dd;
+
+  clip-path: polygon(
+    var(--point-six),
+    var(--point-five),
+    84% 100%,
+    64% calc(10% + 10px)
+  );
+}
+
+.kitchen-top .front-cupboard.left .marble-side {
+  border: none;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #f5f5f2dd;
+
+  clip-path: polygon(
+    var(--point-eight),
+    var(--point-seven),
+    36% calc(10% + 10px),
+    16% 100%
+  );
 }
 
 /* ===========================================
