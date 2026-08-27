@@ -1460,8 +1460,8 @@ body.night .birds .bird {
   height: 55px;
 
   z-index: 2;
-  top: -10%;
-  right: -2%;
+  top: -16%;
+  right: 2%;
 
   /* background: red; */
 }
