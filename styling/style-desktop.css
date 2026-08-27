@@ -105,7 +105,7 @@
 .living-room .window {
   height: 180px;
   width: 400px;
-  left: 6%;
+  left: 50%;
 }
 
 /* ===========================================
@@ -133,7 +133,7 @@
  */
 
 .plant {
-  right: 40%;
+  right: 27%;
 }
 
 /* ===========================================
@@ -144,6 +144,7 @@
 .middle-bench {
   width: 30%;
   height: 28%;
+  /* transform: translate(-50%, 15%); */
   clip-path: polygon(29% 0%, 71% 0%, 100% 85%, 100% 100%, 0% 100%, 0% 85%);
 }
 
@@ -152,7 +153,18 @@
  * ===========================================
  */
 .kitchen-top {
-  --point-one: 31.1% 0%;
+  --lsr-point-one-x: 31.1%;
+  --lsr-point-one-y: 0%;
+  --lsr-point-seven-x: 36%;
+  --lsr-point-seven-y: 10%;
+  --lsr-point-eight-x: 12%;
+  --lsr-point-eight-y: 100%;
+  --lsr-point-nine-x: 0%;
+  --lsr-point-nine-y: 100%;
+  --lsr-point-ten-x: 0%;
+  --lsr-point-ten-y: 70%;
+
+  /* --point-one: 31.1% 0%;
   --point-two: 68.9% 0%;
   --point-three: 100% 70%;
   --point-four: 100% 100%;
@@ -161,7 +173,7 @@
   --point-seven: 36% 10%;
   --point-eight: 12% 100%;
   --point-nine: 0% 100%;
-  --point-ten: 0% 70%;
+  --point-ten: 0% 70%; */
 }
 
 .kitchen-top .corner-edge {
@@ -176,6 +188,43 @@
   left: 36%;
 }
 
+.kitchen-top .front-cupboard.left {
+  clip-path: polygon(
+    var(--point-eight),
+    var(--point-seven),
+    var(--lsr-point-seven-x) calc(var(--lsr-point-seven-y) + 31% + 10px),
+    26% 100%
+  );
+}
+
+.kitchen-top .front-cupboard.right {
+  clip-path: polygon(
+    var(--point-six),
+    var(--point-five),
+    74% 100%,
+    calc(100% - var(--lsr-point-seven-x))
+      calc(var(--lsr-point-seven-y) + 31% + 10px)
+  );
+}
+
+.kitchen-top .front-cupboard.left .marble-side {
+  clip-path: polygon(
+    var(--point-eight),
+    var(--point-seven),
+    36% calc(10% + 10px),
+    16% 100%
+  );
+}
+
+.kitchen-top .front-cupboard.right .marble-side {
+  clip-path: polygon(
+    var(--point-six),
+    var(--point-five),
+    84% 100%,
+    64% calc(10% + 10px)
+  );
+}
+
 /* ===========================================
  *           SCREEN
  * ===========================================
@@ -183,7 +232,7 @@
 
 .screen.tv {
   top: 20%;
-  left: 50%;
+  left: 6%;
   width: var(--screen-width);
   height: var(--screen-height);
   scale: 0.7;

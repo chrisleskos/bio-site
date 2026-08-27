@@ -8,6 +8,7 @@
 
 html {
   width: 100vw;
+  overflow-x: hidden;
 }
 body {
   width: 100vw;
@@ -34,7 +35,6 @@ body.night {
   align-items: flex-end;
   width: 100%;
   min-height: 95vh;
-  overflow: hidden;
 
   background: rgba(121, 157, 154, 1);
 
@@ -91,7 +91,8 @@ body.night {
 }
 
 .kitchen {
-  background-color: #e0f0ff;
+  background-color: #dedede;
+  z-index: 5;
 }
 .kitchen .floor {
   background:
@@ -146,10 +147,10 @@ body.no-scroll {
   left: 20px;
   z-index: 101;
   color: rgba(255, 255, 255, 0.8);
-  background: rgba(10, 10, 10, 0.15); /* Translucent dark HUD box */
-  border: 2px solid rgba(255, 255, 255, 0.15); /* Subtle outline */
+  background: rgba(10, 10, 10, 0.15);
+  border: 2px solid rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(2px);
-  -webkit-backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(2px);
   padding: 8px 10px;
   border-radius: 8px;
   font-size: 0.7rem;
@@ -161,7 +162,7 @@ body.no-scroll {
   gap: 5px;
   text-transform: uppercase;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-  transition: all 0.2s cubic-bezier(0.25, 1, 0.5, 1); /* Snappy game-like transition */
+  transition: all 0.2s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 /* Snappy hover effect with glow */
@@ -444,7 +445,7 @@ body.no-scroll {
   font-size: 0.45rem;
   font-weight: 600;
   font-family: "Raleway", sans-serif;
-  color: white;
+  color: rgb(135, 42, 26);
   padding: 0 3px;
   align-items: center;
   z-index: 3;
@@ -680,7 +681,7 @@ body.night .birds .bird {
   position: absolute;
 
   bottom: 50%;
-  left: -9%;
+  left: 64%;
 
   height: 180px;
   width: 250px;
@@ -919,7 +920,7 @@ body.night .birds .bird {
   height: 220px;
   z-index: 6;
   bottom: calc(var(--floor-height) - 5%);
-  left: 10%;
+  left: 30%;
 }
 
 .couch .back {
@@ -1332,17 +1333,140 @@ body.night .birds .bird {
 }
 
 /* ===========================================
+ *        RUG
+ * ===========================================
+ */
+.rug {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 40%;
+  height: 25%;
+  z-index: 6;
+  transform: translate(-50%, 65%);
+}
+
+.rug-floor {
+  width: 100%;
+  height: 35%;
+  background:
+    repeating-linear-gradient(
+      45deg,
+      rgba(255, 255, 255, 0.07) 0px,
+      rgba(255, 255, 255, 0.07) 2px,
+      transparent 2px,
+      transparent 4px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      rgba(0, 0, 0, 0.1) 0px,
+      rgba(0, 0, 0, 0.1) 2px,
+      transparent 2px,
+      transparent 4px
+    ),
+    conic-gradient(
+      from 0deg at 50% -100%,
+      #1f2f40 0deg,
+      #1f2f40 116.4deg,
+      #e0a96d 116.4deg,
+      #e0a96d 118.2deg,
+      #7b2a3b 118.2deg,
+      #7b2a3b 241.8deg,
+      #e0a96d 241.8deg,
+      #e0a96d 243.6deg,
+      #1f2f40 243.6deg,
+      #1f2f40 360deg
+    );
+  border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.55);
+}
+
+.rug-hanging {
+  position: relative;
+  width: 100%;
+  height: 50%;
+  background:
+    repeating-linear-gradient(
+      45deg,
+      rgba(255, 255, 255, 0.03) 0px,
+      rgba(255, 255, 255, 0.03) 2px,
+      transparent 2px,
+      transparent 4px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      rgba(0, 0, 0, 0.2) 0px,
+      rgba(0, 0, 0, 0.2) 2px,
+      transparent 2px,
+      transparent 4px
+    ),
+    linear-gradient(
+      90deg,
+      #121c26 0%,
+      #121c26 10%,
+      #b88a59 10%,
+      #b88a59 13%,
+      #591d2a 13%,
+      #591d2a 87%,
+      #b88a59 87%,
+      #b88a59 90%,
+      #121c26 90%,
+      #121c26 100%
+    );
+  clip-path: ellipse(50% 100% at 50% 0%);
+  z-index: 2;
+  animation: rug-swing 1.5s ease-in-out infinite alternate;
+}
+
+/* Hanging shadow */
+.rug::after {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 50%;
+  top: 41%;
+  width: 97%;
+  height: 43%;
+  border-radius: 0 0 50% 50% / 0 0 100% 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 0;
+  box-shadow: 0 0 1px 4px rgba(0, 0, 0, 0.5);
+  transform: translate(-50%, 0);
+  animation: rug-shadow-swing 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes rug-shadow-swing {
+  0% {
+    box-shadow: 0 0 1px 4px rgba(0, 0, 0, 0.5);
+  }
+  100% {
+    box-shadow: 0 0px 5px 6px rgba(0, 0, 0, 0.5);
+  }
+}
+
+@keyframes rug-swing {
+  0% {
+    height: 50%;
+  }
+  100% {
+    height: 48.8%;
+  }
+}
+
+/* ===========================================
  *        PLANT
  * ===========================================
  */
 
 .plant {
   position: absolute;
-  width: 50px;
-  height: 95px;
+  width: 30px;
+  height: 55px;
 
   z-index: 2;
-  bottom: calc(var(--floor-height) - 1.5%);
+  top: -10%;
   right: -2%;
 
   /* background: red; */
@@ -1485,11 +1609,11 @@ body.night .birds .bird {
       transparent 84%
     ),
     /* marble base */ #f5f5f2;
-  border: 1.4px solid white;
-  border-top: 0px solid whit;
+  /* border: 1.4px solid white;
+  border-top: 0px solid whit; */
   left: 50%;
   bottom: 0;
-  transform: translate(-50%, 0);
+  transform: translate(-50%, 18%);
   clip-path: polygon(27% 0%, 73% 0%, 92% 85%, 92% 100%, 8% 100%, 8% 85%);
   box-shadow: 10px 0 150px 80px rgba(0, 0, 0, 1);
 }
@@ -1529,16 +1653,29 @@ body.night .birds .bird {
  */
 
 .kitchen-top {
-  --point-one: 31.1% 0%;
-  --point-two: 68.9% 0%;
-  --point-three: 100% 70%;
-  --point-four: 100% 100%;
-  --point-five: 88% 100%;
-  --point-six: 64% 10%;
-  --point-seven: 36% 10%;
-  --point-eight: 12% 100%;
-  --point-nine: 0% 100%;
-  --point-ten: 0% 70%;
+  /* lsr: left side reference. Rest values will be calculated from that */
+  --lsr-point-one-x: 5%;
+  --lsr-point-one-y: 0%;
+  --lsr-point-seven-x: 22%;
+  --lsr-point-seven-y: 10%;
+  --lsr-point-eight-x: 0%;
+  --lsr-point-eight-y: 50%;
+  /* In desktop id does a little angle. Here we dont so we set the same point*/
+  --lsr-point-nine-x: var(--lsr-point-eight-x);
+  --lsr-point-nine-y: var(--lsr-point-eight-y);
+  --lsr-point-ten-x: 0%;
+  --lsr-point-ten-y: 2%;
+
+  --point-one: var(--lsr-point-one-x) var(--lsr-point-one-y);
+  --point-two: calc(100% - var(--lsr-point-one-x)) var(--lsr-point-one-y);
+  --point-three: calc(100% - var(--lsr-point-ten-x)) var(--lsr-point-ten-y);
+  --point-four: calc(100% - var(--lsr-point-nine-x)) var(--lsr-point-nine-y);
+  --point-five: calc(100% - var(--lsr-point-eight-x)) var(--lsr-point-eight-y);
+  --point-six: calc(100% - var(--lsr-point-seven-x)) var(--lsr-point-seven-y);
+  --point-seven: var(--lsr-point-seven-x) var(--lsr-point-seven-y);
+  --point-eight: var(--lsr-point-eight-x) var(--lsr-point-eight-y);
+  --point-nine: var(--lsr-point-nine-x) var(--lsr-point-nine-y);
+  --point-ten: var(--lsr-point-ten-x) var(--lsr-point-ten-y);
 
   position: absolute;
   bottom: 0;
@@ -1586,24 +1723,24 @@ body.night .birds .bird {
 
 .kitchen-top .corner-edge {
   position: absolute;
-  width: 1.5px;
+  width: 0.5px;
   height: calc(31% + 10px);
   background-color: rgba(90, 90, 90, 0.6);
-  top: 10%;
-  left: 75%;
+  top: var(--lsr-point-seven-y);
+  left: calc(100% - var(--lsr-point-seven-x));
   z-index: 5;
 }
 .kitchen-top .corner-edge:first-child {
-  top: 10%;
-  left: 25%;
+  top: var(--lsr-point-seven-y);
+  left: var(--lsr-point-seven-x);
 }
 
 .kitchen-top .front-cupboard {
   position: absolute;
-  width: 50%;
+  width: calc(100% - var(--lsr-point-seven-x) * 2);
   height: 31%;
-  top: 10%;
-  left: 25%;
+  top: var(--lsr-point-seven-y);
+  left: var(--lsr-point-seven-x);
   border-top: 10px solid #f5f5f2dd;
   background:
     /* subtle wood grain */
@@ -1646,8 +1783,8 @@ body.night .birds .bird {
   clip-path: polygon(
     var(--point-eight),
     var(--point-seven),
-    36% calc(41% + 10px),
-    26% 100%
+    var(--lsr-point-seven-x) calc(var(--lsr-point-seven-y) + 31% + 10px),
+    0% 100%
   );
 }
 .kitchen-top .front-cupboard.right {
@@ -1661,8 +1798,9 @@ body.night .birds .bird {
   clip-path: polygon(
     var(--point-six),
     var(--point-five),
-    74% 100%,
-    64% calc(41% + 10px)
+    100% 100%,
+    calc(100% - var(--lsr-point-seven-x))
+      calc(var(--lsr-point-seven-y) + 31% + 10px)
   );
 }
 
@@ -1678,8 +1816,8 @@ body.night .birds .bird {
   clip-path: polygon(
     var(--point-six),
     var(--point-five),
-    84% 100%,
-    64% calc(10% + 10px)
+    100% calc(var(--lsr-point-eight-y) + 10%),
+    calc(100% - var(--lsr-point-seven-x)) calc(var(--lsr-point-seven-y) + 10px)
   );
 }
 
@@ -1695,9 +1833,62 @@ body.night .birds .bird {
   clip-path: polygon(
     var(--point-eight),
     var(--point-seven),
-    36% calc(10% + 10px),
-    16% 100%
+    calc(var(--lsr-point-seven-x)) calc(var(--lsr-point-seven-y) + 10px),
+    0% calc(var(--lsr-point-eight-y) + 10%)
   );
+}
+
+/* ===========================================
+ *        MUG
+ * ===========================================
+ */
+
+.mug {
+  position: absolute;
+  width: 32px;
+  height: 46px;
+  left: 20%;
+  top: 40%;
+}
+
+.mug::before {
+  content: "YOUR CODE SUCKS";
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  left: 0%;
+  top: 0%;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  background: linear-gradient(
+    to right,
+    rgba(100, 100, 100, 1) 10%,
+    rgba(20, 20, 20, 1) 90%,
+    rgba(100, 100, 100, 1)
+  );
+  z-index: 2;
+
+  text-align: center;
+  font-size: 0.4rem;
+  font-weight: bolder;
+  color: white;
+}
+
+.mug::after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 22px;
+  height: 25px;
+  border: 4px solid rgba(20, 20, 20, 1);
+  border-radius: 50px;
+  left: 40%;
+  top: 50%;
+  transform: translate(0, -50%);
+  z-index: -1;
 }
 
 /* ===========================================
@@ -1829,10 +2020,10 @@ body.night .birds .bird {
 }
 
 .screen.tv {
-  height: 120px;
+  height: 150px;
   width: calc(16 * 120px / 9);
   top: 37%;
-  left: 64%;
+  left: -5%;
   cursor: pointer;
 }
 
