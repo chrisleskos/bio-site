@@ -36,7 +36,7 @@ body.night {
   width: 100%;
   min-height: 95vh;
 
-  background: rgba(121, 157, 154, 1);
+  background: rgb(126, 162, 159);
 
   /* border-bottom: solid 40px rgba(220, 220, 200, 1); */
 }
@@ -86,7 +86,17 @@ body.night {
 }
 
 .kitchen {
-  background-color: #dedede;
+  background: linear-gradient(
+    to right,
+    #efefef 5%,
+    #cacaca00 5%,
+    #cacaca00 5.1%,
+    #dedede 5.1%,
+    #efefef 95%,
+    #cacaca00 95%,
+    #cacaca00 95.1%,
+    #dedede 95.1%
+  );
   z-index: 5;
 }
 .kitchen .floor {
@@ -591,6 +601,8 @@ body.night .birds .bird {
  */
 
 .football {
+  --timing-func: (0.25, 1, 0.5, 1);
+  --trans-dur: 1.5s;
   position: absolute;
   bottom: 17%;
   left: 10%;
@@ -598,8 +610,8 @@ body.night .birds .bird {
   width: 53px;
   height: 53px;
   cursor: pointer;
-  transition-duration: 1.5s;
-  transition-timing-function: cubic-bezier(0.8, 0.82, 0.55, 1);
+  transition-duration: var(--trans-dur);
+  transition-timing-function: var(--timing-func);
   z-index: 5;
 }
 .football.kick {
@@ -624,13 +636,12 @@ body.night .birds .bird {
   background: url("../auxilary/images/ball.png") no-repeat center;
   background-size: 100% 100%;
   z-index: 2;
-  transition-duration: 1.5s;
+  transition-duration: var(--trans-dur);
   transform: rotate(20deg);
-  transition-timing-function: cubic-bezier(0.8, 0.82, 0.55, 1);
+  transition-timing-function: var(--timing-func);
 }
 .football.kick .ball .jabulani {
-  transform: rotate(330deg);
-  /* transition-duration: 1.5s; */
+  transform: rotate(450deg);
 }
 /* shadow */
 .football .ball::after {
@@ -1605,6 +1616,7 @@ body.night .birds .bird {
   transform: translate(-50%, 25%);
   clip-path: polygon(30% 0%, 70% 0%, 92% 85%, 92% 94%, 8% 94%, 8% 85%);
   box-shadow: 10px 0 150px 80px rgba(0, 0, 0, 1);
+  z-index: 6;
 }
 .middle-bench::after {
   /* front side */
@@ -1633,6 +1645,20 @@ body.night .birds .bird {
   left: 0;
   top: 0;
   background: linear-gradient(to top, transparent 61%, rgba(60, 60, 60, 0.15));
+  z-index: 3;
+}
+
+/* ===========================================
+ *            WALL
+ * ===========================================
+ */
+.wall {
+  display: none;
+  position: absolute;
+  height: 100%;
+  width: 20%;
+  left: 0;
+  background-color: #efefef;
   z-index: 3;
 }
 
@@ -1672,6 +1698,7 @@ body.night .birds .bird {
   width: 100%;
   height: calc(var(--floor-height) + 10%);
   perspective: 800px;
+  z-index: 4;
 }
 .kitchen-top::after {
   content: "";
@@ -2462,14 +2489,14 @@ body.night .birds .bird {
   width: 80vw;
 
   color: white;
-  font-size: 1.8rem;
+  font-size: 1.4rem; /* Reduced from 1.8rem */
   /* white-space:pre; */
   z-index: 10;
 }
 
 .header-message div {
   position: relative;
-  font-size: 1.1rem;
+  font-size: 0.9rem; /* Reduced from 1.1rem */
   translate: 50px 0;
   width: 70ch;
   height: fit-content;
@@ -2488,38 +2515,69 @@ body.night .birds .bird {
   transition-duration: 3s;
 }
 
-.night .header-message::before,
-.night .header-message div::before {
-  translate: -10% 20px;
-  transition-duration: 3s;
+/* Target only indoor room headers (leaves .yard intact) */
+.room:not(.yard) .header-message {
+  position: absolute;
+  top: 6%;
+  left: 5%;
+  width: auto;
+  max-width: 340px; /* Reduced from 440px */
+  margin-top: 0;
+  padding: 16px 20px; /* Reduced from 22px 28px */
+
+  /* Glassmorphism Background */
+  background: rgba(18, 24, 32, 0.45);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  /* Border & Elevation */
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-left: 4px solid rgba(255, 255, 255, 0.7); /* Accent left bar */
+  border-radius: 10px; /* Reduced from 14px */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35); /* Scaled down shadow */
+
+  /* Typography resets */
+  font-size: 1.2rem; /* Reduced from 1.6rem */
+  font-weight: 700;
+  color: #ffffff;
+  z-index: 10;
+  transition: all 0.4s ease;
 }
 
+/* Sub-text inside the indoor card */
+.room:not(.yard) .header-message div {
+  translate: 0 0;
+  width: 100%;
+  font-size: 0.85rem; /* Reduced from 0.95rem */
+  font-weight: 400;
+  line-height: 1.4;
+  color: rgba(240, 240, 245, 0.88);
+  margin-top: 8px; /* Reduced from 10px */
+}
+
+/* Disable the messy text duplication for indoor rooms */
+.room:not(.yard) .header-message::before,
+.room:not(.yard) .header-message div::before {
+  display: none !important;
+}
+
+/* Night mode adjustment for higher contrast */
+body.night .room:not(.yard) .header-message {
+  background: rgba(10, 14, 22, 0.65);
+  border-color: rgba(255, 255, 255, 0.12);
+  border-left-color: #77ddff;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6); /* Scaled down shadow */
+}
+
+/* Optional: Room specific accent left borders */
 .living-room .header-message {
-  top: 0;
-  left: 2%;
-  width: 80vw;
+  border-left-color: #d193a3; /* Couch pink tint */
 }
-
-.living-room .header-message::before {
-  content: "Hello!";
+.kitchen .header-message {
+  border-left-color: #e0a96d; /* Warm wood tint */
 }
-
-.living-room .header-message div::before {
-  content: "I am Christos,";
-}
-
 .office .header-message {
-  top: 0;
-  left: 0%;
-  width: 80vw;
-}
-
-.office .header-message::before {
-  content: "About";
-}
-
-.office .header-message div::before {
-  content: "___________________________________________________________________________ ___________________________________________________________________________ ___________________________________________________________________________ ___________________________________________________________________________ ___________________________________________________________________________ ___________________________________________________________________________ ___________________________________________________________________________";
+  border-left-color: #77ddff; /* Neon blue tint */
 }
 
 /* ===========================================
@@ -2527,58 +2585,109 @@ body.night .birds .bird {
  * ===========================================
  */
 
-.contact-room form {
+.basement form {
   /* display: flex; */
   width: 30%;
   padding: 0;
 }
 
-.contact-room form input {
+.basement form input {
   margin: 0;
   padding: 0;
   border: none;
   width: 49.4%;
 }
 
-.contact-room form textarea {
+.basement form textarea {
   width: 100%;
   height: 30vh;
 }
 
-.contact-room form button {
+.basement form button {
   width: 100%;
 }
 
 /* ===========================================
- *          FOOTER
+ *        FOOTER (UNDERGROUND / DIRT)
  * ===========================================
  */
 
-.footer {
-  height: 90vh;
-  width: 100%;
-  background: rgba(0, 0, 0, 0.8);
-}
+.room.footer {
+  position: relative;
+  /* Deep, rich soil base color */
+  background-color: #332014;
 
-.footer .socials {
+  /* 
+    Layer 1: Gradient for depth (shadow at the top from the basement, getting pitch black at the very bottom)
+    Layer 2: Inline SVG noise filter to create a gritty dirt texture
+  */
+  background-image:
+    linear-gradient(
+      to bottom,
+      rgba(15, 8, 3, 0.9) 0%,
+      rgba(15, 8, 3, 0.2) 20%,
+      rgba(0, 0, 0, 0.95) 100%
+    ),
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.35'/%3E%3C/svg%3E");
+
+  /* Layout to center your social links */
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  gap: 30px;
+  min-height: 250px;
+  overflow: hidden;
 }
 
-.footer .socials > a {
-  font-style: none;
+/* Optional: Add some scattered "rocks" and "pebbles" embedded in the dirt using radial gradients */
+.room.footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none; /* ensures it doesn't block clicks on links */
+  background-image:
+    radial-gradient(circle at 15% 30%, rgba(0, 0, 0, 0.6) 2px, transparent 3px),
+    radial-gradient(circle at 85% 65%, rgba(0, 0, 0, 0.8) 4px, transparent 5px),
+    radial-gradient(circle at 45% 80%, rgba(0, 0, 0, 0.5) 2px, transparent 3px),
+    radial-gradient(
+      circle at 70% 20%,
+      rgba(20, 10, 5, 0.7) 3px,
+      transparent 4px
+    );
+  z-index: 1;
+}
+
+/* Adjust your socials container so it sits nicely in the dirt */
+.room.footer .socials {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  gap: 20px; /* Spacing between links */
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* Make sure text pops against the dark dirt background */
+.room.footer .socials a {
+  color: #e3d2c3; /* A dusty, earthy white */
+  font-weight: 600;
   text-decoration: none;
-  color: white;
-  margin: 50px 0;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.9); /* Strong shadow for readability */
   display: flex;
   align-items: center;
-  font-size: 1.3rem;
-  cursor: pointer;
+  gap: 8px;
+  transition: color 0.3s ease;
 }
 
-.footer .socials .icon {
-  height: 1.3em;
+.room.footer .socials a:hover {
+  color: #ffffff; /* Brighten on hover */
+}
+
+/* Add a drop shadow to the icons so they don't blend into the dirt */
+.room.footer .socials a img.icon {
+  width: 24px;
+  height: 24px;
+  filter: drop-shadow(2px 2px 3px rgba(0, 0, 0, 0.8));
 }

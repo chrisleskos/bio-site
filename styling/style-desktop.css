@@ -175,6 +175,13 @@
 .plant {
   right: 30%;
 }
+/* ===========================================
+ *            WALL
+ * ===========================================
+ */
+.wall {
+  display: block;
+}
 
 /* ===========================================
  *          MIDDLE KITCHEN BENCH
@@ -192,6 +199,20 @@
  *          KITCEN TOP
  * ===========================================
  */
+.kitchen {
+  background: linear-gradient(
+    to right,
+    #efefef 31.1%,
+    #cacaca40 31.1%,
+    #cacaca40 31.2%,
+    #dedede 31.2%,
+    #efefef 68.8%,
+    #cacaca40 68.8%,
+    #cacaca40 68.9%,
+    #dedede 68.9%
+  );
+}
+
 .kitchen-top {
   --lsr-point-one-x: 31.1%;
   --lsr-point-one-y: 0%;
