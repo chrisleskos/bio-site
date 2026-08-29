@@ -89,12 +89,12 @@ body.night {
   background: linear-gradient(
     to right,
     #efefef 5%,
-    #cacaca00 5%,
-    #cacaca00 5.1%,
+    #cacaca66 5%,
+    #cacaca66 5.1%,
     #dedede 5.1%,
     #efefef 95%,
-    #cacaca00 95%,
-    #cacaca00 95.1%,
+    #cacaca66 95%,
+    #cacaca66 95.1%,
     #dedede 95.1%
   );
   z-index: 5;
@@ -134,6 +134,10 @@ body.night {
 
 .office {
   /* margin: 20vh 0 10vh 0; */
+}
+
+.hallway .floor {
+  border: none;
 }
 
 /* ===========================================
@@ -740,12 +744,12 @@ body.night .birds .bird {
   position: absolute;
 
   bottom: 100px;
-  top: 2%;
+  bottom: var(--floor-height);
   left: 0%;
   translate: -47% 0;
 
-  height: 70%;
-  width: 40%;
+  height: 53%;
+  width: 90%;
   margin: 0;
   padding: 0;
 
@@ -2033,10 +2037,12 @@ body.night .birds .bird {
  */
 
 .desk {
-  position: relative;
-  height: 300px;
-  width: 530px;
+  position: absolute;
+  height: 220px;
+  width: 360px;
   z-index: 4;
+  bottom: var(--floor-height);
+  transform: translate(0, 27%);
   /* background: red; */
 }
 
@@ -2063,7 +2069,7 @@ body.night .birds .bird {
     rgba(30, 30, 30, 1)
   );
 
-  clip-path: polygon(10% 35%, 90% 35%, 100% 80%, 100% 100%, 0% 100%, 0% 80%);
+  clip-path: polygon(10% 35%, 90% 35%, 100% 90%, 100% 100%, 0% 100%, 0% 90%);
   z-index: 4;
 }
 
@@ -2071,7 +2077,7 @@ body.night .birds .bird {
 .desk .desktop:before {
   content: "";
   position: absolute;
-  height: 20%;
+  height: 10%;
   width: 100%;
   bottom: 0;
   background: linear-gradient(
@@ -2088,8 +2094,8 @@ body.night .birds .bird {
   bottom: 0;
   width: 80%;
   height: 55%;
-  border-left: solid rgba(20, 20, 20, 1) 15px;
-  border-right: solid rgba(20, 20, 20, 1) 15px;
+  border-left: solid rgba(20, 20, 20, 1) 10px;
+  border-right: solid rgba(20, 20, 20, 1) 10px;
   z-index: 4;
 }
 
@@ -2142,17 +2148,19 @@ body.night .birds .bird {
 
 .screen.vertical {
   rotate: 90deg;
-  left: 32%;
-  top: -31%;
+  left: 31%;
+  top: 0%;
   border-left-color: rgba(70, 70, 70, 1);
   border-bottom-color: rgba(70, 70, 70, 1);
+  transform: translate(-55%, 0);
 }
 
 .screen.horizontal {
   left: 61.5%;
-  top: -24.6%;
+  top: 0;
   border-left-color: rgba(70, 70, 70, 1);
   border-top-color: rgba(70, 70, 70, 1);
+  transform: translate(0, -57%);
 }
 
 .screen.tv {
@@ -2295,8 +2303,8 @@ body.night .birds .bird {
   /* background: red; */
 
   position: absolute;
-  width: 120px;
-  height: 150px;
+  width: 80px;
+  height: 100px;
 
   bottom: 77%;
   left: 8%;
@@ -2309,8 +2317,8 @@ body.night .birds .bird {
   /* background: black; */
 
   /* border-radius: 100%; */
-  width: 60%;
-  height: 20%;
+  width: 53%;
+  height: 19%;
   bottom: 0;
   left: 20px;
   /* translate: 0 60%; */
@@ -2358,24 +2366,21 @@ body.night .birds .bird {
 }
 
 .table-lamp .lamp-head {
-  --head-tilt: 18px;
+  --head-tilt: 15px;
   position: absolute;
   rotate: -20deg;
-  width: 40%;
   height: 0%;
 
   left: 37%;
   top: 0%;
 
   /* clip-path: polygon(15% 0%, 75% 0%, 100% 100%, 0% 100%); */
-  /* top: 0; */
   width: calc(50% - 2 * var(--head-tilt));
-  /* height: 0%; */
 
   border-left: var(--head-tilt) solid transparent;
   border-right: var(--head-tilt) solid transparent;
 
-  border-bottom: 50px solid rgba(160, 250, 100, 1);
+  border-bottom: 28px solid rgba(160, 250, 100, 1);
   transition-delay: 1s;
   z-index: 2;
 }
@@ -2394,9 +2399,7 @@ body.night .birds .bird {
 }
 
 .table-lamp.open-lamp .lamp-head:before {
-  transition-delay: 1s;
   box-shadow: 0 50px 140px 90px rgba(220, 220, 255, 1);
-
   z-index: 0;
 }
 
@@ -2474,6 +2477,211 @@ body.night .birds .bird {
   z-index: -1;
   bottom: 15%;
   border-width: 8px;
+}
+
+/* ===========================================
+ *          HALLWAY ROOM DOOR
+ * ===========================================
+ */
+.room-door {
+  position: absolute;
+  height: 50%;
+  width: 13%;
+  bottom: var(--floor-height);
+  background: linear-gradient(110deg, #fefff3 50%, #c1c2bd);
+  outline: 15px solid #fefff3;
+  border: #66666622 solid 4px;
+}
+div.room-door:nth-of-type(2) {
+  left: 13%;
+}
+div.room-door:nth-of-type(3) {
+  left: 45%;
+}
+
+.doorknob {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  background: linear-gradient(to bottom right, #aaaaaa 40%, #555555);
+  border-radius: 50%;
+  border-top: 0.5px solid rgb(232, 232, 232);
+  border-left: 0.5px solid rgb(232, 232, 232);
+  border-right: 0.5px solid rgb(186, 186, 186);
+  border-bottom: 0.5px solid rgb(186, 186, 186);
+  right: 4%;
+  top: 55%;
+  box-shadow: 1.5px 2px 5.5px 0.5px rgba(0, 0, 0, 1);
+}
+
+.wc-label {
+  position: absolute;
+  left: 50%;
+  top: 25%;
+  transform: translate(-50%, -50%);
+
+  font-size: 1.3rem;
+  font-weight: 100;
+  color: rgba(40, 40, 40, 0.6);
+  letter-spacing: 3px;
+}
+
+.staircase {
+  position: absolute;
+  height: 25%;
+  width: 3%;
+  right: 5%;
+  bottom: var(--floor-height);
+  background-color: #332014;
+}
+/* railing */
+.staircase::after {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 100%;
+  bottom: 0;
+  width: 200%;
+  height: 90%;
+  border-top: #332014 17px solid;
+  background: linear-gradient(
+    to right,
+    transparent 10%,
+    #332014 10%,
+    #332014 16%,
+    transparent 16%,
+    transparent 43%,
+    #332014 43%,
+    #332014 49%,
+    transparent 49%,
+    transparent 76%,
+    #332014 76%,
+    #332014 82%,
+    transparent 82%
+  );
+}
+
+/* ===========================================
+ *          LEAK
+ * ===========================================
+ */
+/* Container holds everything in place */
+.leak-wrapper {
+  position: absolute;
+  top: calc(100% - var(--floor-height));
+  width: 16%;
+  height: calc(var(--floor-height) + 12px);
+  left: 45.5%;
+  z-index: 5;
+}
+
+.door-leak {
+  position: absolute;
+  width: 80%;
+  height: 8%;
+  background: linear-gradient(
+    to right,
+    rgba(130, 220, 255, 1) 28%,
+    rgba(45, 165, 230, 1),
+    rgba(32, 149, 239, 1),
+    rgba(45, 165, 230, 1),
+    rgba(130, 220, 255, 1)
+  );
+  border-bottom-left-radius: 100%;
+  border-bottom-right-radius: 50%;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 16px;
+  z-index: 4;
+  animation: waterWobble 5s linear infinite alternate;
+}
+.door-leak::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 40%;
+  left: 0%;
+  width: 100%;
+  height: 130%;
+  background: linear-gradient(
+    to right,
+    rgba(130, 220, 255, 1) 28%,
+    rgba(45, 165, 230, 1),
+    rgba(32, 149, 239, 1),
+    rgba(45, 165, 230, 1),
+    rgba(130, 220, 255, 1)
+  );
+  border-radius: 48%;
+  border-top-right-radius: 0%;
+  border-top-left-radius: 43%;
+  z-index: -1;
+}
+
+/* The actual flowing water element */
+.leak-stream {
+  position: absolute;
+  width: 3%;
+  height: 100%;
+  left: 45%;
+
+  /* Layered backgrounds: Moving white flow lines on top of blue water */
+  background:
+    /* repeating-linear-gradient(
+      180deg,
+      transparent 0px,
+      transparent 14px,
+      rgba(255, 255, 255, 0.45) 17px,
+      rgba(255, 255, 255, 0.45) 19px,
+      transparent 22px
+    ), */
+    linear-gradient(
+      180deg,
+      rgba(130, 220, 255, 0.5) 28%,
+      rgba(45, 165, 230, 0.75),
+      rgba(32, 149, 239, 0.9),
+      rgba(45, 165, 230, 0.75),
+      rgba(130, 220, 255, 0.5)
+    ),
+    rgba(32, 149, 239, 0.4);
+  /* 
+  background-size:
+    100% 45px,
+    100% 100%; */
+  backdrop-filter: blur(1.5px);
+
+  /* Flowing water lines animation */
+  animation: flowDown 5s linear infinite;
+}
+
+/* Animates the white horizontal lines downwards */
+@keyframes flowDown {
+  0% {
+    background-position:
+      0 0,
+      0 0;
+  }
+  100% {
+    background-position:
+      0 100px,
+      0 0;
+  }
+}
+
+@keframes waterWobble {
+  0% {
+    background-position:
+      0 0,
+      0 0px;
+  }
+  50% {
+    background-position:
+      0 0,
+      0 200px;
+  }
+  100% {
+    background-position:
+      0 0,
+      0 0;
+  }
 }
 
 /* ===========================================
@@ -2569,15 +2777,17 @@ body.night .room:not(.yard) .header-message {
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6); /* Scaled down shadow */
 }
 
-/* Optional: Room specific accent left borders */
+/* Room specific accent left borders */
 .living-room .header-message {
-  border-left-color: #d193a3; /* Couch pink tint */
+  border-left-color: #d193a3 !important;
 }
 .kitchen .header-message {
-  border-left-color: #e0a96d; /* Warm wood tint */
+  border-left-color: #e0a96d !important;
+  top: 109px !important;
 }
 .office .header-message {
-  border-left-color: #77ddff; /* Neon blue tint */
+  border-left-color: #77ddff;
+  top: 89px !important;
 }
 
 /* ===========================================
