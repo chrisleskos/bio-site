@@ -129,3 +129,9 @@ const livingRoomObserver = new IntersectionObserver(
 );
 
 livingRoomObserver.observe(livingRoom);
+
+function toggleDetailedDiagram(diagId) {
+  const diag = document.getElementById(diagId);
+  diag.style.display = diag.style.display === "flex" ? "none" : "flex";
+  console.log(diag.querySelectorAll(".title-var")[0].innerHTML);
+}

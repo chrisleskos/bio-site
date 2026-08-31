@@ -205,10 +205,51 @@
           >#kitchen</span
         >
         Studies
+        <button
+          class="view-header-button"
+          onclick="toggleDetailedDiagram('kitchen-diag')"
+        >
+          View
+        </button>
         <div>
           I graduated with high marks, earning a degree in Computer Science from
           the University of Piraeus. During my time there, I got to build some
           really fun and interesting projects.
+        </div>
+      </div>
+      <div id="kitchen-diag" class="detailed-diagram">
+        <button
+          id="close-detailed-diagram"
+          class="close-detailed-diagram"
+          onclick="toggleDetailedDiagram('kitchen-diag')"
+        >
+          &#x2190; Back
+        </button>
+        <div class="diagram-title"></div>
+        <div class="diagram-description"></div>
+        <div class="detailed-diagram-container">
+          <div class="diagram-conn">
+            <span>2018</span>
+          </div>
+          <div class="diagram-statement">
+            <img src="auxilary/images/unipi.png" />
+            <div class="title-var">Start of University studies</div>
+            <div class="description-var">
+              Started Studying Computer Science @ University of Pireaus.
+            </div>
+          </div>
+          <div class="diagram-conn">
+            <span>projects</span>
+          </div>
+          <div class="vertical-diagram-statement-container">
+            <div class="diagram-statement"></div>
+            <div class="diagram-conn"></div>
+            <div class="diagram-statement"></div>
+          </div>
+          <div class="diagram-conn">
+            <span>2023</span>
+          </div>
+          <div class="diagram-statement"></div>
         </div>
       </div>
       <div class="wall"></div>
@@ -365,8 +406,10 @@
       </div>
       <div class="staircase"></div>
       <div class="leak-wrapper">
-        <div class="door-leak"></div>
-        <div class="leak-stream"></div>
+        <div class="door-leak">
+          <div class="subleak"></div>
+          <div class="subleak"></div>
+        </div>
         <div class="leak-end"></div>
       </div>
       <div class="floor"></div>
