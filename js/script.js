@@ -133,5 +133,63 @@ livingRoomObserver.observe(livingRoom);
 function toggleDetailedDiagram(diagId) {
   const diag = document.getElementById(diagId);
   diag.style.display = diag.style.display === "flex" ? "none" : "flex";
-  console.log(diag.querySelectorAll(".title-var")[0].innerHTML);
 }
+
+document.querySelectorAll(".detailed-diagram").forEach((diagram) => {
+  const titleEl = diagram.querySelector(".diagram-title");
+  const descEl = diagram.querySelector(".diagram-description");
+  const statements = diagram.querySelectorAll(".diagram-statement");
+
+  // Helper to smoothly fade out, swap text, and fade back in
+  const updateMainDisplay = (newTitle, newDesc) => {
+    titleEl.classList.add("fade-out");
+    descEl.classList.add("fade-out");
+
+    setTimeout(() => {
+      titleEl.innerHTML = newTitle || "";
+      descEl.innerHTML = newDesc || "";
+
+      titleEl.classList.remove("fade-out");
+      descEl.classList.remove("fade-out");
+    }, 300);
+  };
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          statements.forEach((stmt) => {
+            stmt.classList.remove("selected");
+          });
+
+          entry.target.classList.add("selected");
+
+          const titleVar = entry.target.querySelector(".title-var");
+          const descVar = entry.target.querySelector(".description-var");
+
+          const newTitleText = titleVar ? titleVar.innerHTML : "";
+          const newDescText = descVar ? descVar.innerHTML : "";
+
+          updateMainDisplay(newTitleText, newDescText);
+        }
+      });
+    },
+    {
+      root: diagram,
+      rootMargin: "-49% -49% -49% -49%",
+      threshold: 0,
+    },
+  );
+
+  statements.forEach((stmt) => {
+    observer.observe(stmt);
+
+    stmt.addEventListener("click", () => {
+      stmt.scrollIntoView({
+        behavior: "smooth",
+        inline: "center",
+        block: "center",
+      });
+    });
+  });
+});

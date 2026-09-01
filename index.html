@@ -241,15 +241,32 @@
           <div class="diagram-conn">
             <span>projects</span>
           </div>
-          <div class="vertical-diagram-statement-container">
-            <div class="diagram-statement"></div>
-            <div class="diagram-conn"></div>
-            <div class="diagram-statement"></div>
+          <div class="diagram-statement">
+            <div class="title-var">Dieter</div>
+            <div class="description-var">
+              Android App to help Nutritionists and Dietitians create and manage
+              their clients Diet Plans.
+            </div>
+          </div>
+          <div class="diagram-conn"></div>
+          <div class="diagram-statement">
+            <div class="title-var">Dog or Cat</div>
+            <div class="description-var">Website of an images game.</div>
+          </div>
+          <div class="diagram-conn"></div>
+          <div class="diagram-statement">
+            <div class="title-var">JavaED</div>
+            <div class="description-var">
+              Educational Software website feauturing Java lessons and tutorials
+              in the form of a game.
+            </div>
           </div>
           <div class="diagram-conn">
             <span>2023</span>
           </div>
-          <div class="diagram-statement"></div>
+          <div class="diagram-statement">
+            <div class="title-var">Graduated</div>
+          </div>
         </div>
       </div>
       <div class="wall"></div>
@@ -291,12 +308,64 @@
           >#office</span
         >
         Work Experience
+        <button
+          class="view-header-button"
+          onclick="toggleDetailedDiagram('office-diag')"
+        >
+          View
+        </button>
         <div>
           I've been working as a Software Developer at European Dynamics since
           2022, primarily on projects for ESMA (European Securities and Markets
           Authority). In 2025, I took a year off to fulfill my mandatory
-          military service, working in the IT, Communications, and New
-          Technologies Department of the Ministry of Defense.
+          military service as an I.T. at the Department of Information Systems,
+          Communications and New Technologies of the Ministry of Defense.
+        </div>
+      </div>
+
+      <div id="office-diag" class="detailed-diagram">
+        <button
+          id="close-detailed-diagram"
+          class="close-detailed-diagram"
+          onclick="toggleDetailedDiagram('office-diag')"
+        >
+          &#x2190; Back
+        </button>
+        <div class="diagram-title"></div>
+        <div class="diagram-description"></div>
+        <div class="detailed-diagram-container">
+          <div class="diagram-conn">
+            <span>2022</span>
+          </div>
+          <div class="diagram-statement">
+            <img src="auxilary/images/logo_ed.png" />
+            <div class="title-var">European Dynamics</div>
+            <div class="description-var">Worked as a Java Developer.</div>
+          </div>
+          <div class="diagram-conn">
+            <span>2025</span>
+          </div>
+          <div class="diagram-statement">
+            <img src="auxilary/images/tpent.png" />
+            <div class="title-var">Ministry of Defense</div>
+            <div class="description-var">
+              I.T. at the Department of Information Systems, Communications and
+              New Technologies of the Ministry of Defense.
+            </div>
+          </div>
+          <div class="diagram-conn">
+            <span>2026</span>
+          </div>
+          <div class="diagram-statement">
+            <img src="auxilary/images/logo_ed.png" />
+            <div class="title-var">European Dynamics</div>
+            <div class="description-var">
+              After my army obligations, I continued my work at E.D.
+            </div>
+          </div>
+          <div class="diagram-conn">
+            <span>now</span>
+          </div>
         </div>
       </div>
 
@@ -348,12 +417,97 @@
           >#bedroom</span
         >
         Personal Projects
+        <button
+          class="view-header-button"
+          onclick="toggleDetailedDiagram('bedroom-diag')"
+        >
+          View
+        </button>
         <div>
           I instantly fell in love with programming because it gives you the
           power to turn any idea into reality. Here are a few of my own ideas
           brought to life.
         </div>
         <!-- DataPost, Vaccoon, Eldoro Website, Sepolia Sharks Website, tobotaki widget, TPENT chrome extension, Chip Party, Loghub-->
+      </div>
+      <div id="bedroom-diag" class="detailed-diagram">
+        <button
+          id="close-detailed-diagram"
+          class="close-detailed-diagram"
+          onclick="toggleDetailedDiagram('bedroom-diag')"
+        >
+          &#x2190; Back
+        </button>
+        <div class="diagram-title"></div>
+        <div class="diagram-description"></div>
+        <div class="detailed-diagram-container">
+          <div class="diagram-conn"></div>
+          <div class="diagram-statement">
+            <img src="auxilary/images/datapost.webp" />
+            <div class="title-var">DataPost</div>
+            <div class="description-var">Worked as a Java Developer.</div>
+          </div>
+          <div class="diagram-conn">
+            <span></span>
+          </div>
+          <div class="diagram-statement">
+            <img src="auxilary/images/vaccoon.png" />
+            <div class="title-var">Vaccoon</div>
+            <div class="description-var">
+              Reservation management system for tourism businesses in the field
+              of Hotels, Restaurnats and Car Rentals. Supports Online Tourist
+              Agents Sync (e.g. Booking.com)
+            </div>
+          </div>
+          <div class="diagram-conn">
+            <span></span>
+          </div>
+          <div class="diagram-statement">
+            <img src="auxilary/images/eldoro.jpg" />
+            <div class="title-var">El Doro Website</div>
+            <div class="description-var">
+              Promotional Website of El Doro Rooms.
+            </div>
+          </div>
+          <div class="diagram-conn"></div>
+          <div class="diagram-statement">
+            <img src="auxilary/images/sepoliasharks.webp" />
+            <div class="title-var">Sepolia Sharks Website</div>
+            <div class="description-var">
+              Website for an amateur baskteball team, featuring game history and
+              feature schedule display.
+            </div>
+          </div>
+          <div class="diagram-conn"></div>
+          <div class="diagram-statement">
+            <img src="auxilary/images/lansweeper.png" />
+            <div class="title-var">Lansweeper Quick Ticket</div>
+            <div class="description-var">
+              A Chrome extension for Lansweeper ticketing system. On ticket type
+              selection, it autofills the known fields for that ticket (used in
+              the Department of Information Systems, Communications and New
+              Technologies of the Ministry of Defense.).
+            </div>
+          </div>
+          <div class="diagram-conn"></div>
+          <div class="diagram-statement">
+            <img src="auxilary/images/loghub.png" />
+            <div class="title-var">LogHub</div>
+            <div class="description-var">
+              Workout managing software. Create, share, excute and track your
+              workouts in any type of sport. Personal Trainer? Add your clients
+              and track their performance on your workouts.
+            </div>
+          </div>
+          <div class="diagram-conn"></div>
+          <div class="diagram-statement">
+            <img src="auxilary/images/chipparty.png" />
+            <div class="title-var">Chip Party</div>
+            <div class="description-var">
+              Friends and family game using mobile devices as controllers.
+            </div>
+          </div>
+        </div>
       </div>
       <div class="floor"></div>
     </div>
@@ -457,7 +611,8 @@
         >
       </div>
     </div>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="js/script.js"></script>
   </body>
 </html>
